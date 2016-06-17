@@ -44,17 +44,36 @@ NameFakeGenerator.prototype.convert = function(json) {
 	};
 };
 
+function updateFormValues(json) {
+	document.getElementById("firstname").value = json.firstName;
+	document.getElementById("lastname").value = json.lastName;
+};
+
 function updateName(generator) {
 	generator.next(function(json) {
-		document.getElementById("firstname").value = json.firstName;
-		document.getElementById("lastname").value = globalCounter;
+		updateFormValues(json);
+		save(json);
 	});
 }
+
+function save(json) {
+	chrome.storage.local.set({'savedNames': json}, function() {
+	});
+};
 
 document.addEventListener('DOMContentLoaded', function() {
 
 	var generator = new NameFakeGenerator("english-united-states", "female");	
-	updateName(generator);
+	chrome.storage.local.get("savedNames", function(object) {
+		if(object.savedNames == null) {
+			generator.next(function(json) {
+				updateFormValues(json);
+				save(json);
+			});
+		} else {
+			updateFormValues(object.savedNames);
+		}
+	});
 	
 	document.getElementById("refreshbtn").onclick = function() {
 		updateName(generator);
