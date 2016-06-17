@@ -1,67 +1,7 @@
 
-function NameGenerator() {
-    this.xhr = new XMLHttpRequest();
-};
-
-NameGenerator.prototype.next = function(callback) {
-    var self = this;
-    self.xhr.open(self.httpMethod(), self.url(), true);
-    self.xhr.onreadystatechange = function() {
-        if (self.xhr.readyState == 4) {
-            var json = JSON.parse(self.xhr.responseText);
-            callback(self.convert(json));
-        }
-    }
-    self.xhr.send();
-};
-
-NameGenerator.prototype.httpMethod = function() {
-    return "GET";
-};
-
-NameGenerator.prototype.url = function() {
-    return "";
-};
-
-NameGenerator.prototype.convert = function(json) {
-    return json;
-};
-
-function NameFakeGenerator(location, sex) {
-    this.location = location;
-    this.sex = sex;
-}
-
-NameFakeGenerator.prototype = new NameGenerator();
-NameFakeGenerator.prototype.url = function() {
-    return "http://api.namefake.com/" + this.location + "/" + this.sex + "/";
-};
-
-NameFakeGenerator.prototype.convert = function(json) {
-    return {
-        firstName: json.name,
-        lastName: json.name
-    };
-};
-
 function updateFormValues(json) {
     document.getElementById("firstname").value = json.firstName;
     document.getElementById("lastname").value = json.lastName;
-};
-
-function RandomUserGenerator() {
-}
-
-RandomUserGenerator.prototype = new NameGenerator();
-RandomUserGenerator.prototype.url = function() {
-    return "https://randomuser.me/api/";
-};
-
-RandomUserGenerator.prototype.convert = function(json) {
-    return {
-        firstName: json.results[0].name.first,
-        lastName: json.results[0].name.last
-    };
 };
 
 function updateFormValues(json) {
@@ -81,11 +21,23 @@ function save(json) {
     });
 };
 
+function getGenerator() {
+    var generatorCode = document.getElementById('generatortype').value;
+    switch(generatorCode) {
+    case "FakeNameGenerator": 
+        return new NameFakeGenerator();
+    case "RandomUserGenerator":
+        return new RandomUserGenerator();
+    default:
+        return undefined;
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
 
-    var generator = new RandomUserGenerator("english-united-states", "female");   
     chrome.storage.local.get("savedNames", function(object) {
         if(object.savedNames == null) {
+            var generator = getGenerator();
             generator.next(function(json) {
                 updateFormValues(json);
                 save(json);
@@ -96,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.getElementById("refreshbtn").onclick = function() {
+        var generator = getGenerator();
         updateName(generator);
     };
     

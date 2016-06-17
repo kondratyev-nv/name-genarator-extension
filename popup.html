@@ -11,6 +11,9 @@
     <script src="lib/jquery-2.2.4/jquery-2.2.4.min.js"></script>
     <script src="lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
         
+    <script src="js/NameGenerator.js"></script>
+    <script src="js/RandomUserGenerator.js"></script>
+    <script src="js/NameFakeGenerator.js"></script>
     <script src="js/popup.js"></script>
     
     <link href="lib/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -19,6 +22,13 @@
   <body>
     <div class="container">
         <div class="input-group">
+            <fieldset class="form-group">
+                <label for="generatortype">Select generator:</label>
+                <select class="form-control" id="generatortype">
+                    <option value="FakeNameGenerator">Fake Name Generator</option>
+                    <option value="RandomUserGenerator">Random User Generator</option>
+                </select>
+            </fieldset>
             <fieldset class="form-group">
                 <label for="firstname">First name:</label>
                 <input type="text" class="form-control" id="firstname">
