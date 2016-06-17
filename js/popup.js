@@ -49,6 +49,26 @@ function updateFormValues(json) {
     document.getElementById("lastname").value = json.lastName;
 };
 
+function RandomUserGenerator() {
+}
+
+RandomUserGenerator.prototype = new NameGenerator();
+RandomUserGenerator.prototype.url = function() {
+    return "https://randomuser.me/api/";
+};
+
+RandomUserGenerator.prototype.convert = function(json) {
+    return {
+        firstName: json.results[0].name.first,
+        lastName: json.results[0].name.last
+    };
+};
+
+function updateFormValues(json) {
+    document.getElementById("firstname").value = json.firstName;
+    document.getElementById("lastname").value = json.lastName;
+};
+
 function updateName(generator) {
     generator.next(function(json) {
         updateFormValues(json);
@@ -63,7 +83,7 @@ function save(json) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var generator = new NameFakeGenerator("english-united-states", "female");   
+    var generator = new RandomUserGenerator("english-united-states", "female");   
     chrome.storage.local.get("savedNames", function(object) {
         if(object.savedNames == null) {
             generator.next(function(json) {
