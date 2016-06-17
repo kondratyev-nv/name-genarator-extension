@@ -54,6 +54,7 @@ function updateName(generator) {
 document.addEventListener('DOMContentLoaded', function() {
 
 	var generator = new NameFakeGenerator("english-united-states", "female");	
+	updateName(generator);
 	
 	document.getElementById("refreshbtn").onclick = function() {
 		updateName(generator);
