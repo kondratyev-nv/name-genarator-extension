@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
+    <meta charset="utf-8">
+    <meta name="description" 
+          content="Name Generation">
+    <meta name="author" content="Nikolay Kondratyev">
+        
     <title>Name Generation</title>
-    <script src="popup.js"></script>
+    
+    <script src="lib/jquery-2.2.4/jquery-2.2.4.min.js"></script>
+    <script src="lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+        
+    <script src="js/popup.js"></script>
+    
+    <link href="lib/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/popup.css" rel="stylesheet" media="screen">
   </head>
   <body>
-	<div>
-		<button name="button" id="refreshbtn">Refresh</button><br>
-		First name: <input type="text" id="firstname"><br>
-		Last name:  <input type="text" id="lastname"><br>
-	</div>
+    <div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" id="firstname">
+            <input type="text" class="form-control" id="lastname">
+        </div>
+    </div>
   </body>
 </html>
