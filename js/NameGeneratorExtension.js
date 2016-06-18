@@ -21,12 +21,13 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 };
 
 NameGeneratorExtension.prototype.refresh = function () {
-    this.mask.modal('show');
+    var self = this;
+    self.mask.modal('show');
     this.getGenerator().next(function (json) {
-        this.updateFormValues(json);
-        this.currentName = json;
-        this.mask.modal('hide');
-    }, this);
+        self.updateFormValues(json);
+        self.currentName = json;
+        self.mask.modal('hide');
+    });
 };
 
 NameGeneratorExtension.prototype.save = function () {
@@ -36,7 +37,7 @@ NameGeneratorExtension.prototype.save = function () {
 
 NameGeneratorExtension.prototype.load = function () {
     var self = this;
-    this.mask.modal('show');
+    self.mask.modal('show');
     chrome.storage.local.get(null, function (object) {
         if (object.savedNames == null) {
             self.refresh();

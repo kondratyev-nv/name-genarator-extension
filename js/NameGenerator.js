@@ -3,13 +3,13 @@ function NameGenerator() {
     this.xhr = new XMLHttpRequest();
 };
 
-NameGenerator.prototype.next = function (callback, scope) {
+NameGenerator.prototype.next = function (callback) {
     var self = this;
     self.xhr.open(self.httpMethod(), self.url(), true);
     self.xhr.onreadystatechange = function () {
         if (self.xhr.readyState == 4) {
             var json = JSON.parse(self.xhr.responseText);
-            callback.call(scope, self.convert(json));
+            callback(self.convert(json));
         }
     }
     self.xhr.send();
