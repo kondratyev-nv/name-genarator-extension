@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
         nameGenerator.refresh();
     };
 
+    document.getElementById("savebtn").onclick = function () {
+        nameGenerator.save();
+    };
+
+    document.getElementById("loadbtn").onclick = function () {
+        nameGenerator.load();
+    };
+
     document.getElementById("generatortype").onchange = function () {
         nameGenerator.refresh();
     };

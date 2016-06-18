@@ -22,21 +22,21 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 NameGeneratorExtension.prototype.refresh = function () {
     this.getGenerator().next(function (json) {
         this.updateFormValues(json);
+        this.currentName = json;
     }, this);
 };
 
-NameGeneratorExtension.prototype.save = function (json) {
-    chrome.storage.local.set({ 'savedNames': json }, function () {
+NameGeneratorExtension.prototype.save = function () {
+    chrome.storage.local.set({ 'savedNames': this.currentName }, function () {
     });
 };
 
-NameGeneratorExtension.prototype.load = function (json) {
+NameGeneratorExtension.prototype.load = function () {
     var self = this;
     chrome.storage.local.get(null, function (object) {
         if (object.savedNames == null) {
             self.getGenerator().next(function (json) {
                 self.updateFormValues(json);
-                self.save(json);
             });
         } else {
             self.updateFormValues(object.savedNames);
