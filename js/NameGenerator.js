@@ -3,10 +3,10 @@ function NameGenerator() {
     this.xhr = new XMLHttpRequest();
 };
 
-NameGenerator.prototype.next = function(callback) {
+NameGenerator.prototype.next = function (callback) {
     var self = this;
     self.xhr.open(self.httpMethod(), self.url(), true);
-    self.xhr.onreadystatechange = function() {
+    self.xhr.onreadystatechange = function () {
         if (self.xhr.readyState == 4) {
             var json = JSON.parse(self.xhr.responseText);
             callback(self.convert(json));
@@ -15,14 +15,14 @@ NameGenerator.prototype.next = function(callback) {
     self.xhr.send();
 };
 
-NameGenerator.prototype.httpMethod = function() {
+NameGenerator.prototype.httpMethod = function () {
     return "GET";
 };
 
-NameGenerator.prototype.url = function() {
+NameGenerator.prototype.url = function () {
     return "";
 };
 
-NameGenerator.prototype.convert = function(json) {
+NameGenerator.prototype.convert = function (json) {
     return json;
 };

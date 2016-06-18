@@ -5,19 +5,19 @@ function NameFakeGenerator(location, sex) {
 }
 
 NameFakeGenerator.prototype = new NameGenerator();
-NameFakeGenerator.prototype.url = function() {
+NameFakeGenerator.prototype.url = function () {
     var baseUrl = "http://api.namefake.com/";
-    if(this.location != null) {
+    if (this.location != null) {
         baseUrl += this.location + "/";
     }
-    if(this.sex != null) {
+    if (this.sex != null) {
         baseUrl += this.sex + "/";
     }
-    
+
     return baseUrl;
 };
 
-NameFakeGenerator.prototype.convert = function(json) {
+NameFakeGenerator.prototype.convert = function (json) {
     return {
         firstName: json.name,
         lastName: json.name
