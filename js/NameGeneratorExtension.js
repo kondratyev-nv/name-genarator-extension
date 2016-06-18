@@ -35,9 +35,7 @@ NameGeneratorExtension.prototype.load = function () {
     var self = this;
     chrome.storage.local.get(null, function (object) {
         if (object.savedNames == null) {
-            self.getGenerator().next(function (json) {
-                self.updateFormValues(json);
-            });
+            self.refresh();
         } else {
             self.updateFormValues(object.savedNames);
         };
