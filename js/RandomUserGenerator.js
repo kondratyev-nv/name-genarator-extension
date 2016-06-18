@@ -13,3 +13,7 @@ RandomUserGenerator.prototype.convert = function (json) {
         lastName: json.results[0].name.last
     };
 };
+
+RandomUserGenerator.prototype.getCode = function () {
+    return 'RandomUserGenerator';
+};

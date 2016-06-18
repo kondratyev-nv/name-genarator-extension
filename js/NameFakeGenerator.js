@@ -23,3 +23,7 @@ NameFakeGenerator.prototype.convert = function (json) {
         lastName: json.name
     };
 };
+
+NameFakeGenerator.prototype.getCode = function () {
+    return 'NameFakeGenerator';
+};
