@@ -5,7 +5,7 @@ function NameGeneratorExtensionForm(document) {
         firstName: 'firstname',
         lastName: 'lastname',
         email: 'email',
-        password: 'password' 
+        password: 'password'
     };
     this.init();
 };
@@ -41,11 +41,35 @@ NameGeneratorExtensionForm.prototype.getGeneratorOption = function () {
     return this.getElement('generatortype').value;
 };
 
+NameGeneratorExtensionForm.prototype.getLoadOption = function () {
+    return this.getElement('savednames').value;
+};
+
 NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
     this.firstName(fakeNameInfo.firstName);
     this.lastName(fakeNameInfo.lastName);
     this.email(fakeNameInfo.email);
     this.password(fakeNameInfo.password);
+};
+
+NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNames) {
+    var select = this.getElement("savednames");
+    this.clearSelect(select);
+    for (var key in savedNames) {
+        if (savedNames.hasOwnProperty(key)) {
+            var element = savedNames[key];
+            var option = document.createElement("option");
+            option.text = key;
+            option.value = key;
+            select.add(option);
+        }
+    }
+};
+
+NameGeneratorExtensionForm.prototype.clearSelect = function (select) {
+    while (select.options.length > 0) {
+        select.remove(0);
+    }
 };
 
 NameGeneratorExtensionForm.prototype.getElement = function (id) {

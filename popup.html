@@ -33,45 +33,45 @@
                 </div>
             </div>
         </div>
-
-        <div class="input-group">
-            <fieldset class="form-group">
-                <label for="generatortype">Select generator:</label>
-                <div class="input-group">
-                    <select class="form-control" id="generatortype">
+        <fieldset class="form-group">
+            <label for="generatortype">Select generator:</label>
+            <div class="input-group">
+                <select class="form-control" id="generatortype">
                     <option value="NameFakeGenerator">Name Fake Generator</option>
                     <option value="RandomUserGenerator">Random User Generator</option>
                 </select>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
-                    </span>
-                </div>
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="firstname">First name:</label>
-                <input type="text" class="form-control" id="firstname">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="lastname">Last name:</label>
-                <input type="text" class="form-control" id="lastname">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="lastname">Email:</label>
-                <input type="text" class="form-control" id="email">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="lastname">Password:</label>
-                <input type="text" class="form-control" id="password">
-            </fieldset>
-        </div>
-        <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default" id="loadbtn">Load</button>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
+                </span>
             </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default" id="savebtn">Save</button>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="firstname">First name:</label>
+            <input type="text" class="form-control" id="firstname">
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="lastname">Last name:</label>
+            <input type="text" class="form-control" id="lastname">
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="lastname">Email:</label>
+            <input type="text" class="form-control" id="email">
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="lastname">Password:</label>
+            <input type="text" class="form-control" id="password">
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Save as..." id="alias">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="savebtn">Save</button>
+                </span>
             </div>
-        </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <select class="form-control" id="savednames"></select>
+        </fieldset>
     </div>
 </body>
 

@@ -4,6 +4,15 @@ function NameGeneratorExtension(document, generators) {
     this.generators = generators;
     this.generator = this.getGenerator();
     this.mask = $('#loading');
+    this.savedNames = {};
+    this.currentName = {};
+
+    var self = this;
+    chrome.storage.local.get(null, function (object) {
+        self.form.fillSavedNamesSelector(object.savedNames);
+        self.savedNames = object.savedNames || {};
+        self.load();
+    });
 };
 
 NameGeneratorExtension.prototype.getGenerator = function () {
@@ -30,20 +39,18 @@ NameGeneratorExtension.prototype.refresh = function () {
     });
 };
 
-NameGeneratorExtension.prototype.save = function () {
-    chrome.storage.local.set({ 'savedNames': this.currentName }, function () {
+NameGeneratorExtension.prototype.save = function (alias) {
+    var self = this;
+    self.savedNames[alias] = self.currentName;
+    chrome.storage.local.set({ 'savedNames': this.savedNames }, function () {
+        self.form.fillSavedNamesSelector(self.savedNames);
     });
 };
 
 NameGeneratorExtension.prototype.load = function () {
-    var self = this;
-    self.mask.modal('show');
-    chrome.storage.local.get(null, function (object) {
-        if (object.savedNames == null) {
-            self.refresh();
-        } else {
-            self.updateFormValues(object.savedNames);
-        };
-        self.mask.modal('hide');
-    });
+    var alias = this.form.getLoadOption();
+    if(alias == null || alias === '') {
+        return;
+    }
+    this.updateFormValues(this.savedNames[alias]);
 };

@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
         new NameFakeGenerator(),
         new RandomUserGenerator()
     ]);
-    nameGenerator.load();
 
     document.getElementById("refreshbtn").onclick = function () {
         nameGenerator.refresh();
     };
 
     document.getElementById("savebtn").onclick = function () {
-        nameGenerator.save();
+        var alias = document.getElementById("alias").value || "Default";
+        nameGenerator.save(alias);
     };
 
-    document.getElementById("loadbtn").onclick = function () {
+    document.getElementById("savednames").onchange = function () {
         nameGenerator.load();
     };
 
