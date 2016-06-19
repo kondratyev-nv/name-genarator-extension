@@ -6,12 +6,12 @@ function NameFakeGenerator(location, sex) {
 
 NameFakeGenerator.prototype = new NameGenerator();
 NameFakeGenerator.prototype.url = function () {
-    var baseUrl = "http://api.namefake.com/";
+    var baseUrl = 'http://api.namefake.com/';
     if (this.location != null) {
-        baseUrl += this.location + "/";
+        baseUrl += this.location + '/';
     }
     if (this.sex != null) {
-        baseUrl += this.sex + "/";
+        baseUrl += this.sex + '/';
     }
 
     return baseUrl;
@@ -21,7 +21,7 @@ NameFakeGenerator.prototype.convert = function (json) {
     return {
         firstName: json.name,
         lastName: json.name,
-        email: json.email_u + "@" + json.email_d,
+        email: json.email_u + '@' + json.email_d,
         password: json.password
     };
 };

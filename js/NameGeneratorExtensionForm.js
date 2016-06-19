@@ -49,17 +49,17 @@ NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
 };
 
 NameGeneratorExtensionForm.prototype.setGeneratorInfo = function (info) {
-    this.getElement("generatorurl").text(info.url);
-    this.getElement("generatorurl").attr("href", info.url);
+    this.getElement('generatorurl').text(info.url);
+    this.getElement('generatorurl').attr('href', info.url);
 };
 
 NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNames) {
-    var select = this.getElement("savednames");
+    var select = this.getElement('savednames');
     this.clearSelect(select);
     for (var key in savedNames) {
         if (savedNames.hasOwnProperty(key)) {
             var element = savedNames[key];
-            var option = document.createElement("option");
+            var option = document.createElement('option');
             option.text = key;
             option.value = key;
             select.append(option);
@@ -68,7 +68,7 @@ NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNam
 };
 
 NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function(alias) {
-    var select = this.getElement("savednames");
+    var select = this.getElement('savednames');
     select.val(alias);
 };
 

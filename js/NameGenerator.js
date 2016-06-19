@@ -16,11 +16,11 @@ NameGenerator.prototype.next = function (callback) {
 };
 
 NameGenerator.prototype.httpMethod = function () {
-    return "GET";
+    return 'GET';
 };
 
 NameGenerator.prototype.url = function () {
-    return "";
+    return '';
 };
 
 NameGenerator.prototype.convert = function (json) {

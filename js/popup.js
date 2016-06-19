@@ -6,20 +6,20 @@ $(document).ready(function () {
         new RandomUserGenerator()
     ]);
 
-    $("#refreshbtn").click(function () {
+    $('#refreshbtn').click(function () {
         nameGenerator.refresh();
     });
 
-    $("#savebtn").click(function () {
-        var alias = document.getElementById("alias").value || "Default";
+    $('#savebtn').click(function () {
+        var alias = document.getElementById('alias').value || 'Default';
         nameGenerator.save(alias);
     });
 
-    $("#savednames").change(function () {
+    $('#savednames').change(function () {
         nameGenerator.load();
     });
 
-    $("#generatortype").change(function () {
+    $('#generatortype').change(function () {
         nameGenerator.changeGenerator();
     });
 

@@ -4,7 +4,7 @@ function RandomUserGenerator() {
 
 RandomUserGenerator.prototype = new NameGenerator();
 RandomUserGenerator.prototype.url = function () {
-    return "https://randomuser.me/api/";
+    return 'https://randomuser.me/api/';
 };
 
 RandomUserGenerator.prototype.convert = function (json) {

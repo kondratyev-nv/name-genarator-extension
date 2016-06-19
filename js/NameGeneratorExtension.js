@@ -60,5 +60,5 @@ NameGeneratorExtension.prototype.load = function () {
     if(alias == null || alias === '') {
         return;
     }
-    this.updateFormValues(this.savedNames[alias]);
+    this.updateFormValues(this.savedNames[alias]);    
 };
