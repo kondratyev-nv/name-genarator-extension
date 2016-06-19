@@ -29,20 +29,16 @@ NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey
 
 NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) {
     return function (value) {
-        if (value != null) {
-            this['get' + (valueKey.charAt(0).toUpperCase() + valueKey.slice(1)) + 'Field']().value = value;
-        }
-
-        return this['get' + (valueKey.charAt(0).toUpperCase() + valueKey.slice(1)) + 'Field']().value;
+        return this['get' + (valueKey.charAt(0).toUpperCase() + valueKey.slice(1)) + 'Field']().val(value);
     };
 };
 
 NameGeneratorExtensionForm.prototype.getGeneratorOption = function () {
-    return this.getElement('generatortype').value;
+    return this.getElement('generatortype').val();
 };
 
 NameGeneratorExtensionForm.prototype.getLoadOption = function () {
-    return this.getElement('savednames').value;
+    return this.getElement('savednames').val();
 };
 
 NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
@@ -61,22 +57,20 @@ NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNam
             var option = document.createElement("option");
             option.text = key;
             option.value = key;
-            select.add(option);
+            select.append(option);
         }
     }
 };
 
 NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function(alias) {
     var select = this.getElement("savednames");
-    select.value = alias;
+    select.val(alias);
 };
 
 NameGeneratorExtensionForm.prototype.clearSelect = function (select) {
-    while (select.options.length > 0) {
-        select.remove(0);
-    }
+    select.empty();
 };
 
 NameGeneratorExtensionForm.prototype.getElement = function (id) {
-    return this.document.getElementById(id);
+    return $('#' + id);
 };

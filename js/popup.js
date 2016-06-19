@@ -6,21 +6,21 @@ document.addEventListener('DOMContentLoaded', function () {
         new RandomUserGenerator()
     ]);
 
-    document.getElementById("refreshbtn").onclick = function () {
+    $("#refreshbtn").click(function () {
         nameGenerator.refresh();
-    };
+    });
 
-    document.getElementById("savebtn").onclick = function () {
+    $("#savebtn").click(function () {
         var alias = document.getElementById("alias").value || "Default";
         nameGenerator.save(alias);
-    };
+    });
 
-    document.getElementById("savednames").onchange = function () {
+    $("#savednames").change(function () {
         nameGenerator.load();
-    };
+    });
 
-    document.getElementById("generatortype").onchange = function () {
+    $("#generatortype").change(function () {
         nameGenerator.refresh();
-    };
+    });
 
 }, false);
