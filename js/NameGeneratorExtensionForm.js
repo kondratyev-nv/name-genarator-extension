@@ -53,6 +53,13 @@ NameGeneratorExtensionForm.prototype.setGeneratorInfo = function (info) {
     this.getElement('generatorurl').attr('href', info.url);
 };
 
+NameGeneratorExtensionForm.prototype.alias = function (value) {
+    if (value == null) {
+        return this.getElement('alias').val();
+    }
+    return this.getElement('alias').val(value);
+};
+
 NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNames) {
     var select = this.getElement('savednames');
     this.clearSelect(select);
@@ -67,9 +74,12 @@ NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNam
     }
 };
 
-NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function(alias) {
-    var select = this.getElement('savednames');
-    select.val(alias);
+NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function (alias) {
+    this.getElement('savednames').val(alias);
+};
+
+NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function (alias) {
+    this.getElement('savednames').val(alias);
 };
 
 NameGeneratorExtensionForm.prototype.clearSelect = function (select) {

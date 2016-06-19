@@ -11,8 +11,7 @@ $(document).ready(function () {
     });
 
     $('#savebtn').click(function () {
-        var alias = document.getElementById('alias').value || 'Default';
-        nameGenerator.save(alias);
+        nameGenerator.save();
     });
 
     $('#savednames').change(function () {
