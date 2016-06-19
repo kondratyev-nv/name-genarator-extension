@@ -48,6 +48,11 @@ NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
     this.password(fakeNameInfo.password);
 };
 
+NameGeneratorExtensionForm.prototype.setGeneratorInfo = function (info) {
+    this.getElement("generatorurl").text(info.url);
+    this.getElement("generatorurl").attr("href", info.url);
+};
+
 NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNames) {
     var select = this.getElement("savednames");
     this.clearSelect(select);

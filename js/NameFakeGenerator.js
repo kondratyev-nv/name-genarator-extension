@@ -29,3 +29,10 @@ NameFakeGenerator.prototype.convert = function (json) {
 NameFakeGenerator.prototype.getCode = function () {
     return 'NameFakeGenerator';
 };
+
+NameFakeGenerator.prototype.getInfo = function () {
+    return {
+        text: 'Fake Name Generator',
+        url: 'http://namefake.com/'
+    };
+};

@@ -30,3 +30,7 @@ NameGenerator.prototype.convert = function (json) {
 NameGenerator.prototype.getCode = function () {
     return undefined;
 };
+
+NameGenerator.prototype.getInfo = function () {
+    return undefined;
+};

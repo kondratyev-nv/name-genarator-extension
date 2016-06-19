@@ -13,6 +13,7 @@ function NameGeneratorExtension(document, generators) {
         self.savedNames = object.savedNames || {};
         self.load();
     });
+    this.changeGenerator();
 };
 
 NameGeneratorExtension.prototype.getGenerator = function () {
@@ -37,6 +38,12 @@ NameGeneratorExtension.prototype.refresh = function () {
         self.currentName = json;
         self.mask.modal('hide');
     });
+};
+
+NameGeneratorExtension.prototype.changeGenerator = function () {
+    var generator = this.getGenerator();
+    this.form.setGeneratorInfo(generator.getInfo());
+    this.refresh();
 };
 
 NameGeneratorExtension.prototype.save = function (alias) {

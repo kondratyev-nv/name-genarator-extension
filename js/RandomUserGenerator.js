@@ -19,3 +19,10 @@ RandomUserGenerator.prototype.convert = function (json) {
 RandomUserGenerator.prototype.getCode = function () {
     return 'RandomUserGenerator';
 };
+
+RandomUserGenerator.prototype.getInfo = function () {
+    return {
+        text: 'Random User Generator',
+        url: 'https://randomuser.me/'
+    };
+};

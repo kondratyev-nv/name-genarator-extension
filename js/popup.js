@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
 
     var nameGenerator = new NameGeneratorExtension(document, [
         new NameFakeGenerator(),
@@ -20,7 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     $("#generatortype").change(function () {
-        nameGenerator.refresh();
+        nameGenerator.changeGenerator();
     });
 
-}, false);
+    $('body').on('click', 'a', function () {
+        chrome.tabs.create({ url: $(this).attr('href') });
+        return false;
+    });
+
+});
