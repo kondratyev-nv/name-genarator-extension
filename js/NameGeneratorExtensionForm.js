@@ -66,6 +66,11 @@ NameGeneratorExtensionForm.prototype.fillSavedNamesSelector = function (savedNam
     }
 };
 
+NameGeneratorExtensionForm.prototype.changeSavedNamesOption = function(alias) {
+    var select = this.getElement("savednames");
+    select.value = alias;
+};
+
 NameGeneratorExtensionForm.prototype.clearSelect = function (select) {
     while (select.options.length > 0) {
         select.remove(0);

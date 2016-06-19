@@ -44,6 +44,7 @@ NameGeneratorExtension.prototype.save = function (alias) {
     self.savedNames[alias] = self.currentName;
     chrome.storage.local.set({ 'savedNames': this.savedNames }, function () {
         self.form.fillSavedNamesSelector(self.savedNames);
+        self.form.changeSavedNamesOption(alias);
     });
 };
 
