@@ -37,10 +37,15 @@
         <div class="input-group">
             <fieldset class="form-group">
                 <label for="generatortype">Select generator:</label>
-                <select class="form-control" id="generatortype">
+                <div class="input-group">
+                    <select class="form-control" id="generatortype">
                     <option value="NameFakeGenerator">Name Fake Generator</option>
                     <option value="RandomUserGenerator">Random User Generator</option>
                 </select>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
+                    </span>
+                </div>
             </fieldset>
             <fieldset class="form-group">
                 <label for="firstname">First name:</label>
@@ -60,9 +65,6 @@
             </fieldset>
         </div>
         <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
-            </div>
             <div class="btn-group">
                 <button type="button" class="btn btn-default" id="loadbtn">Load</button>
             </div>
