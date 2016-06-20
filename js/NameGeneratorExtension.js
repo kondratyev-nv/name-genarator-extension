@@ -33,16 +33,19 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
     self.mask.modal('show');
+    var params = self.form.getGenerationParams();
     this.getGenerator().next(function (json) {
         self.updateFormValues(json);
         self.currentName = json;
         self.mask.modal('hide');
-    });
+    }, params);
 };
 
 NameGeneratorExtension.prototype.changeGenerator = function () {
     var generator = this.getGenerator();
-    this.form.setGeneratorInfo(generator.getInfo());
+    var info = generator.getInfo();
+    this.form.setGeneratorInfo(info);
+    this.form.fillGeneratorParams(info);
     this.refresh();
 };
 

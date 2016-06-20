@@ -42,7 +42,7 @@ NameGeneratorExtensionForm.prototype.getLoadOption = function () {
 };
 
 NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
-    for(var valueKey in this.valuesMap) {
+    for (var valueKey in this.valuesMap) {
         this[valueKey](fakeNameInfo[valueKey]);
     }
 };
@@ -50,6 +50,46 @@ NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
 NameGeneratorExtensionForm.prototype.setGeneratorInfo = function (info) {
     this.getElement('generatorurl').text(info.url);
     this.getElement('generatorurl').attr('href', info.url);
+};
+
+NameGeneratorExtensionForm.prototype.getGenerationParams = function () {
+    return {
+        sex: this.getElement('sex').val(),
+        country: this.getElement('country').val()
+    };
+};
+
+NameGeneratorExtensionForm.prototype.fillGeneratorParams = function (info) {
+    var sexSelect = this.getElement('sex');
+    this.fillSelectFromParams(sexSelect, info.sexes);
+
+    var countrySelect = this.getElement('country');
+    this.fillSelectFromParams(countrySelect, info.countries);
+};
+
+NameGeneratorExtensionForm.prototype.fillSelectFromParams = function (select, params) {
+    this.clearSelect(select);
+    if (params == null || params.length < 1) {
+        select.prop('disabled', true);
+        return;
+    }
+
+    var random = document.createElement('option');
+    random.text = 'Random';
+    random.value = 'random';
+    select.append(random);
+
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            var element = params[key];
+            var option = document.createElement('option');
+            option.text = params[key].name;
+            option.value = key;
+            select.append(option);
+        }
+    }
+
+    select.prop('disabled', false);
 };
 
 NameGeneratorExtensionForm.prototype.alias = function (value) {

@@ -3,8 +3,16 @@ function RandomUserGenerator() {
 }
 
 RandomUserGenerator.prototype = new NameGenerator();
-RandomUserGenerator.prototype.url = function () {
-    return 'https://randomuser.me/api/';
+RandomUserGenerator.prototype.url = function (params) {
+    var baseUrl = 'https://randomuser.me/api/';
+    var urlParams = '';
+    if (params.country != null && params.country != 'random') {
+        urlParams += 'nat=' + this.getInfo().countries[params.country].param;
+    }
+    if (params.sex != null && params.sex != 'random') {
+        urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().countries[params.sex].param;
+    }
+    return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;
 };
 
 RandomUserGenerator.prototype.convert = function (json) {
@@ -23,6 +31,26 @@ RandomUserGenerator.prototype.getCode = function () {
 RandomUserGenerator.prototype.getInfo = function () {
     return {
         text: 'Random User Generator',
-        url: 'https://randomuser.me/'
+        url: 'https://randomuser.me/',
+        sexes: [
+            {
+                name: 'Male',
+                param: 'male'
+            },
+            {
+                name: 'Female',
+                param: 'female'
+            }
+        ],
+        countries: [
+            {
+                name: 'USA',
+                param: 'US'
+            },
+            {
+                name: 'France',
+                param: 'FR'
+            }
+        ]
     };
 };
