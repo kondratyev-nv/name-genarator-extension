@@ -1,6 +1,7 @@
 
 function NameGeneratorExtension(document, generators) {
     this.form = new NameGeneratorExtensionForm(document);
+    this.settings = new NameGeneratorExtensionSettingsForm(document);
     this.generators = generators;
     this.generator = this.getGenerator();
     this.mask = $('#loading');
@@ -9,7 +10,7 @@ function NameGeneratorExtension(document, generators) {
 
     var self = this;
     chrome.storage.local.get(null, function (object) {
-        self.form.fillSavedNamesSelector(object.savedNames);
+        self.settings.fillSavedNamesSelector(object.savedNames);
         self.savedNames = object.savedNames || {};
         self.load();
     });
@@ -17,7 +18,7 @@ function NameGeneratorExtension(document, generators) {
 };
 
 NameGeneratorExtension.prototype.getGenerator = function () {
-    var generatorCode = this.form.getGeneratorOption();
+    var generatorCode = this.settings.getGeneratorOption();
     if (!this.generator || generatorCode !== this.generator.getCode()) {
         this.generator = this.generators.find(function (generator) {
             return generatorCode === generator.getCode();
@@ -33,7 +34,7 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
     self.mask.modal('show');
-    var params = self.form.getGenerationParams();
+    var params = self.settings.getGenerationParams();
     this.getGenerator().next(function (json) {
         self.updateFormValues(json);
         self.currentName = json;
@@ -44,26 +45,26 @@ NameGeneratorExtension.prototype.refresh = function () {
 NameGeneratorExtension.prototype.changeGenerator = function () {
     var generator = this.getGenerator();
     var info = generator.getInfo();
-    this.form.setGeneratorInfo(info);
-    this.form.fillGeneratorParams(info);
+    this.settings.setGeneratorInfo(info);
+    this.settings.fillGeneratorParams(info);
     this.refresh();
 };
 
 NameGeneratorExtension.prototype.save = function () {
     var self = this;
-    var alias = self.form.alias();
+    var alias = self.settings.alias();
     self.savedNames[alias] = self.currentName;
     chrome.storage.local.set({ 'savedNames': this.savedNames }, function () {
-        self.form.fillSavedNamesSelector(self.savedNames);
-        self.form.changeSavedNamesOption(alias);
+        self.settings.fillSavedNamesSelector(self.savedNames);
+        self.settings.changeSavedNamesOption(alias);
     });
 };
 
 NameGeneratorExtension.prototype.load = function () {
-    var alias = this.form.getLoadOption();
+    var alias = this.settings.getLoadOption();
     if (alias == null || alias === '') {
         return;
     }
-    this.form.alias(alias);
+    this.settings.alias(alias);
     this.updateFormValues(this.savedNames[alias]);
 };
