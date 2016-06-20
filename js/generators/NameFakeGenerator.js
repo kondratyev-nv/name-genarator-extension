@@ -6,7 +6,7 @@ NameFakeGenerator.prototype = new NameGenerator();
 
 NameFakeGenerator.prototype.url = function (params) {
     var baseUrl = 'http://api.namefake.com/';
-    
+
     if (params.country != null && params.country != 'random') {
         baseUrl += this.getInfo().countries[params.country].param + '/';
     } else {
