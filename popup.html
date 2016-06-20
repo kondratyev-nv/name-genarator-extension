@@ -36,33 +36,6 @@
             </div>
         </div>
         <fieldset class="form-group">
-            <label for="generatortype">Select generator:</label>
-            <div class="input-group">
-                <select class="form-control" id="generatortype">
-                    <option value="NameFakeGenerator">Name Fake Generator</option>
-                    <option value="RandomUserGenerator">Random User Generator</option>
-                </select>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
-                </span>
-            </div>
-            <span class="help-block">
-                About this source <a href="#" id="generatorurl"></a>
-            </span>
-            <div class="row">
-                <div class="col-xs-6">
-                    <label for="sex">Sex:</label>
-                    <select class="form-control" id="sex">
-                    </select>
-                </div>
-                <div class="col-xs-6">
-                    <label for="country">Country:</label>
-                    <select class="form-control" id="country">
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="form-group">
             <label for="firstname">First name:</label>
             <input type="text" class="form-control" id="firstname">
         </fieldset>
@@ -78,17 +51,61 @@
             <label for="lastname">Password:</label>
             <input type="text" class="form-control" id="password">
         </fieldset>
-        <fieldset class="form-group">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Save as..." id="alias">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" id="savebtn">Save</button>
-                </span>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#generator">Generator</a></li>
+            <li><a data-toggle="tab" href="#profiles">Profiles</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="generator" class="tab-pane fade in active">
+                <fieldset class="form-group">
+                    <label for="generatortype">Select generator:</label>
+                    <div class="input-group">
+                        <select class="form-control" id="generatortype">
+                            <option value="NameFakeGenerator">Name Fake Generator</option>
+                            <option value="RandomUserGenerator">Random User Generator</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
+                        </span>
+                    </div>
+                    <span class="help-block">
+                        About this source <a href="#" id="generatorurl"></a>
+                    </span>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label for="sex">Sex:</label>
+                            <select class="form-control" id="sex">
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="country">Country:</label>
+                            <select class="form-control" id="country">
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
-        </fieldset>
-        <fieldset class="form-group">
-            <select class="form-control" id="savednames"></select>
-        </fieldset>
+            <div id="profiles" class="tab-pane fade">
+                <fieldset class="form-group">
+                    <label for="alias">Save this name as</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Save as..." id="alias">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="savebtn">Save</button>
+                        </span>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="savednames">Saved names</label>
+                    <div class="input-group">
+                        <select class="form-control" id="savednames"></select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="loadbtn">Load</button>
+                        </span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </div>
 </body>
 

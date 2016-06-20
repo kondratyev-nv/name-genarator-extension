@@ -14,7 +14,7 @@ $(document).ready(function () {
         nameGenerator.save();
     });
 
-    $('#savednames').change(function () {
+    $('#loadbtn').click(function () {
         nameGenerator.load();
     });
 
@@ -23,8 +23,9 @@ $(document).ready(function () {
     });
 
     $('body').on('click', 'a', function () {
-        chrome.tabs.create({ url: $(this).attr('href') });
-        return false;
+        if ($(this).attr('data-toggle') != 'tab') {
+            chrome.tabs.create({ url: $(this).attr('href') });
+        }
     });
 
 });
