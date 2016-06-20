@@ -12,7 +12,7 @@ function NameGeneratorExtensionForm(document) {
 
 NameGeneratorExtensionForm.prototype.init = function () {
     for (var valueKey in this.valuesMap) {
-        this['get' + (valueKey.charAt(0).toUpperCase() + valueKey.slice(1)) + 'Field'] = this.createGetFieldFunction(valueKey);
+        this['get' + valueKey.capitalizeFirstLetter() + 'Field'] = this.createGetFieldFunction(valueKey);
         this[valueKey] = this.createGetSetFunction(valueKey);
     }
 };
@@ -29,7 +29,7 @@ NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey
 
 NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) {
     return function (value) {
-        return this['get' + (valueKey.charAt(0).toUpperCase() + valueKey.slice(1)) + 'Field']().val(value);
+        return this['get' + valueKey.capitalizeFirstLetter() + 'Field']().val(value);
     };
 };
 
@@ -42,10 +42,9 @@ NameGeneratorExtensionForm.prototype.getLoadOption = function () {
 };
 
 NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
-    this.firstName(fakeNameInfo.firstName);
-    this.lastName(fakeNameInfo.lastName);
-    this.email(fakeNameInfo.email);
-    this.password(fakeNameInfo.password);
+    for(var valueKey in this.valuesMap) {
+        this[valueKey](fakeNameInfo[valueKey]);
+    }
 };
 
 NameGeneratorExtensionForm.prototype.setGeneratorInfo = function (info) {

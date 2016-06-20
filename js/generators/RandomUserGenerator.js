@@ -9,8 +9,8 @@ RandomUserGenerator.prototype.url = function () {
 
 RandomUserGenerator.prototype.convert = function (json) {
     return {
-        firstName: json.results[0].name.first,
-        lastName: json.results[0].name.last,
+        firstName: json.results[0].name.first.capitalizeFirstLetter(),
+        lastName: json.results[0].name.last.capitalizeFirstLetter(),
         email: json.results[0].email,
         password: json.results[0].login.password
     };
