@@ -10,7 +10,7 @@ RandomUserGenerator.prototype.url = function (params) {
         urlParams += 'nat=' + this.getInfo().countries[params.country].param;
     }
     if (params.sex != null && params.sex != 'random') {
-        urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().countries[params.sex].param;
+        urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().sexes[params.sex].param;
     }
     return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;
 };
