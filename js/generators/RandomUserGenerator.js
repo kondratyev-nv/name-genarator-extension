@@ -6,10 +6,10 @@ RandomUserGenerator.prototype = new NameGenerator();
 RandomUserGenerator.prototype.url = function (params) {
     var baseUrl = 'https://randomuser.me/api/';
     var urlParams = '';
-    if (params.country != null && params.country != 'random') {
+    if (params.country) {
         urlParams += 'nat=' + this.getInfo().countries[params.country].param;
     }
-    if (params.sex != null && params.sex != 'random') {
+    if (params.sex) {
         urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().sexes[params.sex].param;
     }
     return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;

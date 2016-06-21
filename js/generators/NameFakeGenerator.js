@@ -7,13 +7,13 @@ NameFakeGenerator.prototype = new NameGenerator();
 NameFakeGenerator.prototype.url = function (params) {
     var baseUrl = 'http://api.namefake.com/';
 
-    if (params.country != null && params.country != 'random') {
+    if (params.country) {
         baseUrl += this.getInfo().countries[params.country].param + '/';
     } else {
         baseUrl += 'random/';
     }
 
-    if (params.sex != null && params.sex != 'random') {
+    if (params.sex) {
         baseUrl += this.getInfo().sexes[params.sex].param + '/';
     } else {
         baseUrl += 'random/';

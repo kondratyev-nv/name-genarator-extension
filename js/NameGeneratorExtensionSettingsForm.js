@@ -40,7 +40,7 @@ NameGeneratorExtensionSettingsForm.prototype.fillSelectFromParams = function (se
 
     var random = document.createElement('option');
     random.text = 'Random';
-    random.value = 'random';
+    random.value = '';
     select.append(random);
 
     for (var key in params) {
