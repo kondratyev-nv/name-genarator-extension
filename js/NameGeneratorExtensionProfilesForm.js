@@ -29,10 +29,6 @@ NameGeneratorExtensionProfilesForm.prototype.changeSavedNamesOption = function (
     this.getElement('savednames').val(alias);
 };
 
-NameGeneratorExtensionProfilesForm.prototype.changeSavedNamesOption = function (alias) {
-    this.getElement('savednames').val(alias);
-};
-
 NameGeneratorExtensionProfilesForm.prototype.getElement = function (id) {
     return $('#' + id);
 };
