@@ -13,7 +13,6 @@ function NameGeneratorExtension(document, generators) {
     chrome.storage.local.get(null, function (object) {
         self.profiles.fillSavedNamesSelector(object.savedNames);
         self.savedNames = object.savedNames || {};
-        self.load();
     });
     this.changeGenerator();
 };
@@ -63,7 +62,7 @@ NameGeneratorExtension.prototype.save = function () {
 
 NameGeneratorExtension.prototype.load = function () {
     var alias = this.profiles.getLoadOption();
-    if (alias == null || alias === '') {
+    if (!alias) {
         return;
     }
     this.profiles.alias(alias);
