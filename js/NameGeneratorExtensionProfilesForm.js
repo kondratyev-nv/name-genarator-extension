@@ -1,6 +1,11 @@
 
 function NameGeneratorExtensionProfilesForm(document) {
     this.document = document;
+
+    var aliasField = this.getElement('alias'), self = this;
+    aliasField.on('input', function() {
+        self.getElement('savebtn').prop('disabled', !aliasField.val());
+    });
 };
 
 NameGeneratorExtensionProfilesForm.prototype.getLoadOption = function () {
