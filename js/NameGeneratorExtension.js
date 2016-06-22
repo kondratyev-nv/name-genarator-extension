@@ -2,6 +2,7 @@
 function NameGeneratorExtension(document, generators) {
     this.form = new NameGeneratorExtensionForm(document);
     this.settings = new NameGeneratorExtensionSettingsForm(document);
+    this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
     this.generator = this.getGenerator();
     this.mask = $('#loading');
@@ -10,7 +11,7 @@ function NameGeneratorExtension(document, generators) {
 
     var self = this;
     chrome.storage.local.get(null, function (object) {
-        self.settings.fillSavedNamesSelector(object.savedNames);
+        self.profiles.fillSavedNamesSelector(object.savedNames);
         self.savedNames = object.savedNames || {};
         self.load();
     });
@@ -52,19 +53,19 @@ NameGeneratorExtension.prototype.changeGenerator = function () {
 
 NameGeneratorExtension.prototype.save = function () {
     var self = this;
-    var alias = self.settings.alias();
+    var alias = self.profiles.alias();
     self.savedNames[alias] = self.currentName;
     chrome.storage.local.set({ 'savedNames': this.savedNames }, function () {
-        self.settings.fillSavedNamesSelector(self.savedNames);
-        self.settings.changeSavedNamesOption(alias);
+        self.profiles.fillSavedNamesSelector(self.savedNames);
+        self.profiles.changeSavedNamesOption(alias);
     });
 };
 
 NameGeneratorExtension.prototype.load = function () {
-    var alias = this.settings.getLoadOption();
+    var alias = this.profiles.getLoadOption();
     if (alias == null || alias === '') {
         return;
     }
-    this.settings.alias(alias);
+    this.profiles.alias(alias);
     this.updateFormValues(this.savedNames[alias]);
 };

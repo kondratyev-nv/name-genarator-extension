@@ -12,7 +12,7 @@ function NameGeneratorExtensionForm(document) {
 
 NameGeneratorExtensionForm.prototype.init = function () {
     for (var valueKey in this.valuesMap) {
-        this['get' + valueKey.capitalizeFirstLetter() + 'Field'] = this.createGetFieldFunction(valueKey);
+        this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field'] = this.createGetFieldFunction(valueKey);
         this[valueKey] = this.createGetSetFunction(valueKey);
     }
 };
@@ -29,7 +29,7 @@ NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey
 
 NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) {
     return function (value) {
-        return this['get' + valueKey.capitalizeFirstLetter() + 'Field']().val(value);
+        return this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val(value);
     };
 };
 
