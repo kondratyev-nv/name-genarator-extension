@@ -80,7 +80,7 @@ RandomUserGenerator.prototype.getInfo = function () {
                 param: 'FR'
             },
             {
-                name: 'United Kingdom (Great Britain)',
+                name: 'United Kingdom',
                 param: 'GB'
             },
             {
