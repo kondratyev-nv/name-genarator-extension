@@ -44,12 +44,68 @@ RandomUserGenerator.prototype.getInfo = function () {
         ],
         countries: [
             {
-                name: 'USA',
-                param: 'US'
+                name: 'Australia',
+                param: 'AU'
+            },
+            {
+                name: 'Brazil',
+                param: 'BR'
+            },
+            {
+                name: 'Canada',
+                param: 'CA'
+            },
+            {
+                name: 'Switzerland',
+                param: 'CH'
+            },
+            {
+                name: 'Germany',
+                param: 'DE'
+            },
+            {
+                name: 'Denmark',
+                param: 'DK'
+            },
+            {
+                name: 'Spain',
+                param: 'ES'
+            },
+            {
+                name: 'Finland',
+                param: 'FI'
             },
             {
                 name: 'France',
                 param: 'FR'
+            },
+            {
+                name: 'United Kingdom (Great Britain)',
+                param: 'GB'
+            },
+            {
+                name: 'Ireland',
+                param: 'IE'
+            },
+            {
+                name: 'Iran',
+                param: 'IR'
+            },
+            {
+                name: 'Netherlands',
+                param: 'NL'
+            },
+            {
+                name: 'New Zealand',
+                param: 'NZ'
+            },
+            {
+                name: 'Turkey',
+                param: 'TR'
+            },
+            {
+                name: 'United States',
+                param: 'US'
             }
         ]
     };
