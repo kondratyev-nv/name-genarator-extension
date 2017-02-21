@@ -6,10 +6,11 @@
     "browser_action": {
         "default_popup": "popup.html"
     },
-    "icons": { "16": "img/icon16.png",
-               "48": "img/icon48.png",
-               "64": "img/icon64.png",
-              "128": "img/icon128.png" 
+    "icons": {
+        "16": "img/icon16.png",
+        "48": "img/icon48.png",
+        "64": "img/icon64.png",
+        "128": "img/icon128.png"
     },
     "permissions": [
         "https://randomuser.me/api/",
