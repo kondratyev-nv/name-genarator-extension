@@ -3,13 +3,17 @@ function NameGenerator() {
     this.xhr = new XMLHttpRequest();
 };
 
-NameGenerator.prototype.next = function (callback, params) {
+NameGenerator.prototype.next = function (requestConfiguration) {
     var self = this;
-    self.xhr.open(self.httpMethod(), self.url(params), true);
+    self.xhr.open(self.httpMethod(), self.url(requestConfiguration.params), true);
     self.xhr.onreadystatechange = function () {
-        if (self.xhr.readyState == 4) {
-            var json = JSON.parse(self.xhr.responseText);
-            callback(self.convert(json));
+        if (self.xhr.readyState == self.xhr.DONE) {
+            try {
+                var json = JSON.parse(self.xhr.responseText);
+                requestConfiguration.onCompleted(self.convert(json));
+            } catch (ex) {
+                requestConfiguration.onError(ex);
+            }
         }
     }
     self.xhr.send();
