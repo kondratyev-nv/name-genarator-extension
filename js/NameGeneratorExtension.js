@@ -1,6 +1,9 @@
 
 function NameGeneratorExtension(document, generators) {
-    this.form = new NameGeneratorExtensionForm(document);
+    var self = this;
+    this.form = new NameGeneratorExtensionForm(document, function () {
+        self.updatePreviousState();
+    });
     this.settings = new NameGeneratorExtensionSettingsForm(document);
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
@@ -8,14 +11,18 @@ function NameGeneratorExtension(document, generators) {
     this.mask = $('#loading');
     this.errorMessage = $('#error-message');
     this.savedNames = {};
-    this.currentName = {};
+    this.previousState = {};
 
-    var self = this;
     chrome.storage.local.get(null, function (object) {
         self.profiles.fillSavedNamesSelector(object.savedNames);
         self.savedNames = object.savedNames || {};
+        if (object.previousState) {
+            self.previousState = object.previousState;
+            self.updateFormValues(self.previousState);
+        }
     });
-    this.changeGenerator();
+
+    self.changeGenerator(false);
 };
 
 NameGeneratorExtension.prototype.getGenerator = function () {
@@ -30,6 +37,7 @@ NameGeneratorExtension.prototype.getGenerator = function () {
 
 NameGeneratorExtension.prototype.updateFormValues = function (json) {
     this.form.fill(json);
+    this.updatePreviousState();
 };
 
 NameGeneratorExtension.prototype.refresh = function () {
@@ -41,7 +49,6 @@ NameGeneratorExtension.prototype.refresh = function () {
         params: params,
         onCompleted: function (json) {
             self.updateFormValues(json);
-            self.currentName = json;
             self.mask.modal('hide');
         },
         onError: function (ex) {
@@ -51,21 +58,31 @@ NameGeneratorExtension.prototype.refresh = function () {
     });
 };
 
-NameGeneratorExtension.prototype.changeGenerator = function () {
+NameGeneratorExtension.prototype.changeGenerator = function (needRefresh) {
     var generator = this.getGenerator();
     var info = generator.getInfo();
     this.settings.setGeneratorInfo(info);
     this.settings.fillGeneratorParams(info);
-    this.refresh();
+    if (needRefresh) {
+        this.refresh();
+    }
 };
 
 NameGeneratorExtension.prototype.save = function () {
     var self = this;
     var alias = self.profiles.alias();
-    self.savedNames[alias] = self.currentName;
-    chrome.storage.local.set({ 'savedNames': this.savedNames }, function () {
-        self.profiles.fillSavedNamesSelector(self.savedNames);
-        self.profiles.changeSavedNamesOption(alias);
+    self.savedNames[alias] = self.form.getState();
+    self.updatePreviousState();
+
+    self.profiles.fillSavedNamesSelector(self.savedNames);
+    self.profiles.changeSavedNamesOption(alias);
+};
+
+NameGeneratorExtension.prototype.updatePreviousState = function () {
+    var self = this;
+    chrome.storage.local.set({
+        'savedNames': this.savedNames,
+        'previousState': self.form.getState()
     });
 };
 

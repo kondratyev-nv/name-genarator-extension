@@ -3,7 +3,7 @@ function NameGeneratorExtensionProfilesForm(document) {
     this.document = document;
 
     var aliasField = this.getElement('alias'), self = this;
-    aliasField.on('input', function () {
+    aliasField.on('change paste keyup', function () {
         self.getElement('savebtn').prop('disabled', !aliasField.val());
     });
 };
@@ -13,10 +13,12 @@ NameGeneratorExtensionProfilesForm.prototype.getLoadOption = function () {
 };
 
 NameGeneratorExtensionProfilesForm.prototype.alias = function (value) {
+    var aliasField = this.getElement('alias');
     if (value == null) {
-        return this.getElement('alias').val();
+        return aliasField.val();
     }
-    return this.getElement('alias').val(value);
+    aliasField.val(value);
+    this.getElement('savebtn').prop('disabled', !aliasField.val());
 };
 
 NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (savedNames) {

@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 
     $('#generatortype').change(function () {
-        nameGenerator.changeGenerator();
+        nameGenerator.changeGenerator(true);
     });
 
     $('#error-message .close').click(function () {
