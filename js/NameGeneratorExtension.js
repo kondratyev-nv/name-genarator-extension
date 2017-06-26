@@ -6,6 +6,7 @@ function NameGeneratorExtension(document, generators) {
     this.generators = generators;
     this.generator = this.getGenerator();
     this.mask = $('#loading');
+    this.errorMessage = $('#error-message');
     this.savedNames = {};
     this.currentName = {};
 
@@ -34,12 +35,20 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
     self.mask.modal('show');
+    self.errorMessage.hide();
     var params = self.settings.getGenerationParams();
-    this.getGenerator().next(function (json) {
-        self.updateFormValues(json);
-        self.currentName = json;
-        self.mask.modal('hide');
-    }, params);
+    this.getGenerator().next({
+        params: params,
+        onCompleted: function (json) {
+            self.updateFormValues(json);
+            self.currentName = json;
+            self.mask.modal('hide');
+        },
+        onError: function (ex) {
+            self.errorMessage.show();
+            self.mask.modal('hide');
+        }
+    });
 };
 
 NameGeneratorExtension.prototype.changeGenerator = function () {

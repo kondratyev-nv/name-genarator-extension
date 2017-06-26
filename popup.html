@@ -53,8 +53,8 @@
             <input type="text" class="form-control" id="password">
         </fieldset>
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#generator">Generator</a></li>
-            <li><a data-toggle="tab" href="#profiles">Profiles</a></li>
+            <li class="active"><a data-toggle="tab" action-in="popup" href="#generator">Generator</a></li>
+            <li><a data-toggle="tab" action-in="popup" href="#profiles">Profiles</a></li>
         </ul>
         <div class="tab-content">
             <div id="generator" class="tab-pane fade in active">
@@ -85,6 +85,9 @@
                         </div>
                     </div>
                 </fieldset>
+                <div id="error-message" class="alert alert-danger" style="display:none;">
+                    <a href="#" class="close" action-in="popup" aria-label="close">&times;</a> An error occured!
+                </div>
             </div>
             <div id="profiles" class="tab-pane fade">
                 <fieldset class="form-group">

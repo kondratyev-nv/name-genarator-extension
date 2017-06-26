@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-
     var nameGenerator = new NameGeneratorExtension(document, [
         new NameFakeGenerator(),
         new RandomUserGenerator()
@@ -22,10 +21,13 @@ $(document).ready(function () {
         nameGenerator.changeGenerator();
     });
 
+    $('#error-message .close').click(function () {
+        $('#error-message').hide();
+    });
+
     $('body').on('click', 'a', function () {
-        if ($(this).attr('data-toggle') != 'tab') {
+        if ($(this).attr('action-in') != 'popup') {
             chrome.tabs.create({ url: $(this).attr('href') });
         }
     });
-
 });
