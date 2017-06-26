@@ -62,8 +62,8 @@
                     <label for="generatortype">Select generator:</label>
                     <div class="input-group">
                         <select class="form-control" id="generatortype">
-                            <option value="NameFakeGenerator">Name Fake Generator</option>
                             <option value="RandomUserGenerator">Random User Generator</option>
+                            <option value="NameFakeGenerator">Name Fake Generator</option>
                         </select>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" id="refreshbtn">Refresh</button>
@@ -95,7 +95,9 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Save as..." id="alias">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" disabled='true' type="button" id="savebtn">Save</button>
+                            <button class="btn btn-default" disabled='true' type="button" id="savebtn">
+                                <span class="glyphicon glyphicon-save"></span>
+                            </button>
                         </span>
                     </div>
                 </fieldset>
@@ -104,7 +106,9 @@
                     <div class="input-group">
                         <select class="form-control" id="savednames"></select>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" id="loadbtn">Load</button>
+                            <button class="btn btn-default" type="button" id="loadbtn">
+                                <span class="glyphicon glyphicon-open"></span>
+                            </button>
                         </span>
                     </div>
                 </fieldset>

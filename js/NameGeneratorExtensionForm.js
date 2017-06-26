@@ -1,5 +1,5 @@
 
-function NameGeneratorExtensionForm(document) {
+function NameGeneratorExtensionForm(document, updateStateCallback) {
     this.document = document;
     this.valuesMap = {
         firstName: 'firstname',
@@ -7,12 +7,13 @@ function NameGeneratorExtensionForm(document) {
         email: 'email',
         password: 'password'
     };
-    this.init();
+    this.init(updateStateCallback);
 };
 
-NameGeneratorExtensionForm.prototype.init = function () {
+NameGeneratorExtensionForm.prototype.init = function (updateStateCallback) {
     for (var valueKey in this.valuesMap) {
         this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field'] = this.createGetFieldFunction(valueKey);
+        this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().on('change paste keyup', updateStateCallback);
         this[valueKey] = this.createGetSetFunction(valueKey);
     }
 };
@@ -37,6 +38,14 @@ NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
     for (var valueKey in this.valuesMap) {
         this[valueKey](fakeNameInfo[valueKey]);
     }
+};
+
+NameGeneratorExtensionForm.prototype.getState = function () {
+    var state = {};
+    for (var valueKey in this.valuesMap) {
+        state[valueKey] = this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val();
+    }
+    return state;
 };
 
 NameGeneratorExtensionForm.prototype.getElement = function (id) {
