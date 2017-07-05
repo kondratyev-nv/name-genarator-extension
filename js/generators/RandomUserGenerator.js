@@ -1,35 +1,6 @@
 
-function RandomUserGenerator() {
-}
-
-RandomUserGenerator.prototype = new NameGenerator();
-RandomUserGenerator.prototype.url = function (params) {
-    var baseUrl = 'https://randomuser.me/api/';
-    var urlParams = '';
-    if (params.country) {
-        urlParams += 'nat=' + this.getInfo().countries[params.country].param;
-    }
-    if (params.sex) {
-        urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().sexes[params.sex].param;
-    }
-    return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;
-};
-
-RandomUserGenerator.prototype.convert = function (json) {
-    return {
-        firstName: Utils.capitalizeFirstLetter(json.results[0].name.first),
-        lastName: Utils.capitalizeFirstLetter(json.results[0].name.last),
-        email: json.results[0].email,
-        password: json.results[0].login.password
-    };
-};
-
-RandomUserGenerator.prototype.getCode = function () {
-    return 'RandomUserGenerator';
-};
-
-RandomUserGenerator.prototype.getInfo = function () {
-    return {
+var RandomUserGenerator = function () {
+    var availableGeneratorConfiguration = {
         text: 'Random User Generator',
         url: 'https://randomuser.me/',
         sexes: [
@@ -109,4 +80,44 @@ RandomUserGenerator.prototype.getInfo = function () {
             }
         ]
     };
+    var buildUrl = function (params) {
+        var baseUrl = 'https://randomuser.me/api/';
+        var urlParams = '';
+        if (params.country) {
+            urlParams += 'nat=' + this.getInfo().countries[params.country].param;
+        }
+        if (params.sex) {
+            urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().sexes[params.sex].param;
+        }
+        return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;
+    };
+    var convert = function (json) {
+        return {
+            firstName: Utils.capitalizeFirstLetter(json.results[0].name.first),
+            lastName: Utils.capitalizeFirstLetter(json.results[0].name.last),
+            email: json.results[0].email,
+            password: json.results[0].login.password
+        };
+    };
+    return {
+        getCode: function () {
+            return 'RandomUserGenerator';
+        },
+        update: function (configuration) {
+            Utils.httpRequest({
+                url: buildUrl(configuration.params),
+                method: 'GET',
+                onCompleted: function (responseText) {
+                    var json = JSON.parse(responseText);
+                    configuration.onCompleted(convert(json));
+                },
+                onError: function (exception) {
+                    configuration.onError(exception);
+                }
+            })
+        },
+        getInfo: function () {
+            return availableGeneratorConfiguration;
+        }
+    }
 };

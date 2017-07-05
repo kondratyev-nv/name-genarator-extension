@@ -11,6 +11,22 @@ var Utils = (function () {
         },
         clearSelect: function (select) {
             select.empty();
+        },
+        httpRequest: function (requestConfiguration) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(requestConfiguration.method || 'GET',
+                requestConfiguration.url,
+                true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == xhr.DONE) {
+                    try {
+                        requestConfiguration.onCompleted(xhr.responseText);
+                    } catch (ex) {
+                        requestConfiguration.onError(ex);
+                    }
+                }
+            };
+            xhr.send();
         }
     };
 })();

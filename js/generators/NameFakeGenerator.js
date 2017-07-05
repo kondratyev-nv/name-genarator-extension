@@ -1,42 +1,6 @@
 
-function NameFakeGenerator() {
-}
-
-NameFakeGenerator.prototype = new NameGenerator();
-
-NameFakeGenerator.prototype.url = function (params) {
-    var baseUrl = 'http://api.namefake.com/';
-
-    if (params.country) {
-        baseUrl += this.getInfo().countries[params.country].param + '/';
-    } else {
-        baseUrl += 'random/';
-    }
-
-    if (params.sex) {
-        baseUrl += this.getInfo().sexes[params.sex].param + '/';
-    } else {
-        baseUrl += 'random/';
-    }
-
-    return baseUrl;
-};
-
-NameFakeGenerator.prototype.convert = function (json) {
-    return {
-        firstName: json.name,
-        lastName: json.name,
-        email: json.email_u + '@' + json.email_d,
-        password: json.password
-    };
-};
-
-NameFakeGenerator.prototype.getCode = function () {
-    return 'NameFakeGenerator';
-};
-
-NameFakeGenerator.prototype.getInfo = function () {
-    return {
+var NameFakeGenerator = function () {
+    var availableGeneratorConfiguration = {
         text: 'Fake Name Generator',
         url: 'http://namefake.com/',
         sexes: [
@@ -280,4 +244,50 @@ NameFakeGenerator.prototype.getInfo = function () {
             }
         ]
     };
+    var buildUrl = function (params) {
+        var baseUrl = 'http://api.namefake.com/';
+
+        if (params.country) {
+            baseUrl += this.getInfo().countries[params.country].param + '/';
+        } else {
+            baseUrl += 'random/';
+        }
+
+        if (params.sex) {
+            baseUrl += this.getInfo().sexes[params.sex].param + '/';
+        } else {
+            baseUrl += 'random/';
+        }
+
+        return baseUrl;
+    };
+    var convert = function (json) {
+        return {
+            firstName: json.name,
+            lastName: json.name,
+            email: json.email_u + '@' + json.email_d,
+            password: json.password
+        };
+    };
+    return {
+        getCode: function () {
+            return 'NameFakeGenerator';
+        },
+        update: function (configuration) {
+            Utils.httpRequest({
+                url: buildUrl(configuration.params),
+                method: 'GET',
+                onCompleted: function (responseText) {
+                    var json = JSON.parse(responseText);
+                    configuration.onCompleted(convert(json));
+                },
+                onError: function (exception) {
+                    configuration.onError(exception);
+                }
+            })
+        },
+        getInfo: function () {
+            return availableGeneratorConfiguration;
+        }
+    }
 };

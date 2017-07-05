@@ -45,7 +45,7 @@ NameGeneratorExtension.prototype.refresh = function () {
     self.mask.modal('show');
     self.errorMessage.hide();
     var params = self.settings.getGenerationParams();
-    this.getGenerator().next({
+    this.getGenerator().update({
         params: params,
         onCompleted: function (json) {
             self.updateFormValues(json);
