@@ -1,25 +1,25 @@
 
-function NameGeneratorExtensionSettingsForm(document) {
+function SettingsForm(document) {
     this.document = document;
 };
 
-NameGeneratorExtensionSettingsForm.prototype.getGeneratorOption = function () {
+SettingsForm.prototype.getGeneratorOption = function () {
     return this.getElement('generatortype').val();
 };
 
-NameGeneratorExtensionSettingsForm.prototype.setGeneratorInfo = function (info) {
+SettingsForm.prototype.setGeneratorInfo = function (info) {
     this.getElement('generatorurl').text(info.url);
     this.getElement('generatorurl').attr('href', info.url);
 };
 
-NameGeneratorExtensionSettingsForm.prototype.getGenerationParams = function () {
+SettingsForm.prototype.getGenerationParams = function () {
     return {
         sex: this.getElement('sex').val(),
         country: this.getElement('country').val()
     };
 };
 
-NameGeneratorExtensionSettingsForm.prototype.fillGeneratorParams = function (info) {
+SettingsForm.prototype.fillGeneratorParams = function (info) {
     var sexSelect = this.getElement('sex');
     this.fillSelectFromParams(sexSelect, info.sexes);
 
@@ -27,7 +27,7 @@ NameGeneratorExtensionSettingsForm.prototype.fillGeneratorParams = function (inf
     this.fillSelectFromParams(countrySelect, info.countries);
 };
 
-NameGeneratorExtensionSettingsForm.prototype.fillSelectFromParams = function (select, params) {
+SettingsForm.prototype.fillSelectFromParams = function (select, params) {
     Utils.clearSelect(select);
     if (params == null || params.length < 1) {
         select.prop('disabled', true);
@@ -49,6 +49,6 @@ NameGeneratorExtensionSettingsForm.prototype.fillSelectFromParams = function (se
     select.prop('disabled', false);
 };
 
-NameGeneratorExtensionSettingsForm.prototype.getElement = function (id) {
+SettingsForm.prototype.getElement = function (id) {
     return $('#' + id);
 };

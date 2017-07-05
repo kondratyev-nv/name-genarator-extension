@@ -1,5 +1,5 @@
 
-function NameGeneratorExtensionProfilesForm(document) {
+function ProfilesForm(document) {
     this.document = document;
 
     var aliasField = this.getElement('alias'), self = this;
@@ -8,11 +8,11 @@ function NameGeneratorExtensionProfilesForm(document) {
     });
 };
 
-NameGeneratorExtensionProfilesForm.prototype.getLoadOption = function () {
+ProfilesForm.prototype.getLoadOption = function () {
     return this.getElement('savednames').val();
 };
 
-NameGeneratorExtensionProfilesForm.prototype.alias = function (value) {
+ProfilesForm.prototype.alias = function (value) {
     var aliasField = this.getElement('alias');
     if (value == null) {
         return aliasField.val();
@@ -21,7 +21,7 @@ NameGeneratorExtensionProfilesForm.prototype.alias = function (value) {
     this.getElement('savebtn').prop('disabled', !aliasField.val());
 };
 
-NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (savedNames) {
+ProfilesForm.prototype.fillSavedNamesSelector = function (savedNames) {
     var select = this.getElement('savednames');
     Utils.clearSelect(select);
     for (var key in savedNames) {
@@ -32,10 +32,10 @@ NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (
     }
 };
 
-NameGeneratorExtensionProfilesForm.prototype.changeSavedNamesOption = function (alias) {
+ProfilesForm.prototype.changeSavedNamesOption = function (alias) {
     this.getElement('savednames').val(alias);
 };
 
-NameGeneratorExtensionProfilesForm.prototype.getElement = function (id) {
+ProfilesForm.prototype.getElement = function (id) {
     return $('#' + id);
 };

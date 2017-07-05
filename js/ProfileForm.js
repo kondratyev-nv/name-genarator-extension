@@ -1,5 +1,5 @@
 
-function NameGeneratorExtensionForm(document, updateStateCallback) {
+function ProfileForm(document, updateStateCallback) {
     this.document = document;
     this.valuesMap = {
         firstName: 'firstname',
@@ -10,7 +10,7 @@ function NameGeneratorExtensionForm(document, updateStateCallback) {
     this.init(updateStateCallback);
 };
 
-NameGeneratorExtensionForm.prototype.init = function (updateStateCallback) {
+ProfileForm.prototype.init = function (updateStateCallback) {
     for (var valueKey in this.valuesMap) {
         this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field'] = this.createGetFieldFunction(valueKey);
         this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().on('change paste keyup', updateStateCallback);
@@ -18,7 +18,7 @@ NameGeneratorExtensionForm.prototype.init = function (updateStateCallback) {
     }
 };
 
-NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey) {
+ProfileForm.prototype.createGetFieldFunction = function (valueKey) {
     return function () {
         if (this[valueKey + 'Field'] == null) {
             this[valueKey + 'Field'] = this.getElement(this.valuesMap[valueKey]);
@@ -28,19 +28,19 @@ NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey
     };
 };
 
-NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) {
+ProfileForm.prototype.createGetSetFunction = function (valueKey) {
     return function (value) {
         return this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val(value);
     };
 };
 
-NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
+ProfileForm.prototype.fill = function (fakeNameInfo) {
     for (var valueKey in this.valuesMap) {
         this[valueKey](fakeNameInfo[valueKey]);
     }
 };
 
-NameGeneratorExtensionForm.prototype.getState = function () {
+ProfileForm.prototype.getState = function () {
     var state = {};
     for (var valueKey in this.valuesMap) {
         state[valueKey] = this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val();
@@ -48,6 +48,6 @@ NameGeneratorExtensionForm.prototype.getState = function () {
     return state;
 };
 
-NameGeneratorExtensionForm.prototype.getElement = function (id) {
+ProfileForm.prototype.getElement = function (id) {
     return $('#' + id);
 };

@@ -1,11 +1,11 @@
 
 function NameGeneratorExtension(document, generators) {
     var self = this;
-    this.form = new NameGeneratorExtensionForm(document, function () {
+    this.form = new ProfileForm(document, function () {
         self.updatePreviousState();
     });
-    this.settings = new NameGeneratorExtensionSettingsForm(document);
-    this.profiles = new NameGeneratorExtensionProfilesForm(document);
+    this.settings = new SettingsForm(document);
+    this.profiles = new ProfilesForm(document);
     this.generators = generators;
     this.generator = this.getGenerator();
     this.mask = $('#loading');
