@@ -4,7 +4,7 @@ function NameGeneratorExtension(document, generators) {
     this.form = new ProfileForm(document, function () {
         self.updatePreviousState();
     });
-    this.settings = new SettingsForm(document);
+    this.settings = SettingsForm(document);
     this.profiles = new ProfilesForm(document);
     this.generators = generators;
     this.generator = this.getGenerator();
