@@ -39,13 +39,13 @@ NameGeneratorExtensionSettingsForm.prototype.fillSelectFromParams = function (se
     random.value = '';
     select.append(random);
 
-    for (var key in params) {
-        if (params.hasOwnProperty(key)) {
-            var option = Utils.createOption(this.document, params[key].name, key);
-            select.append(option);
-        }
-    }
-
+    var options = Object.keys(params).map(function (key) {
+        return {
+            name: params[key].name,
+            value: key
+        };
+    });
+    Utils.createOptions(this.document, select, options);
     select.prop('disabled', false);
 };
 

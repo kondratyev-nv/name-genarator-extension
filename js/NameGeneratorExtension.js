@@ -14,8 +14,8 @@ function NameGeneratorExtension(document, generators) {
     this.previousState = {};
 
     chrome.storage.local.get(null, function (object) {
-        self.profiles.fillSavedNamesSelector(object.savedNames);
         self.savedNames = object.savedNames || {};
+        self.profiles.fillSavedNamesSelector(self.savedNames);
         if (object.previousState) {
             self.previousState = object.previousState;
             self.updateFormValues(self.previousState);
