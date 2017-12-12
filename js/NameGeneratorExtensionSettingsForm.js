@@ -1,6 +1,8 @@
 
-function NameGeneratorExtensionSettingsForm(document) {
+function NameGeneratorExtensionSettingsForm(document, refreshAction) {
     this.document = document;
+    this.getElement('sex').change(refreshAction);
+    this.getElement('country').change(refreshAction);
 };
 
 NameGeneratorExtensionSettingsForm.prototype.getGeneratorOption = function () {

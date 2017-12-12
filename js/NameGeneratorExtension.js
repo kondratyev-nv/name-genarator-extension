@@ -4,7 +4,9 @@ function NameGeneratorExtension(document, generators) {
     this.form = new NameGeneratorExtensionForm(document, function () {
         self.updatePreviousState();
     });
-    this.settings = new NameGeneratorExtensionSettingsForm(document);
+    this.settings = new NameGeneratorExtensionSettingsForm(document, function() {
+        self.refresh();
+    });
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
     this.buildGeneratorOptions(document, generators);
