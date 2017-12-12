@@ -6,10 +6,17 @@ Easy way to generate fake names and save them for later use.
 
 ### Supported generators
 
-* [Fake Name Generator](http://namefake.com/)
 * [Random User Generator](https://randomuser.me/)
+* [Random Profile](http://randomprofile.com/)
+* [uinames.com](https://uinames.com/)
 
 ### Release notes
+
+#### 0.0.0.3
+ 
+ - Add refresh on sex and country change
+ - Add Random Profile and uinames.com generators
+ - Disable saved name selection when no available
 
 #### 0.0.0.2
 
@@ -21,3 +28,4 @@ Easy way to generate fake names and save them for later use.
 #### 0.0.0.1
 
  - Initial release
+ 
