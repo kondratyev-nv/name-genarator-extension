@@ -13,8 +13,10 @@
         "128": "img/icon128.png"
     },
     "permissions": [
-        "https://randomuser.me/api/",
-        "http://api.namefake.com/",
+        "https://randomuser.me/api/*",
+        "https://api.namefake.com/*",
+        "https://uinames.com/api/*",
+        "http://randomprofile.com/api/*",
         "storage"
     ],
     "incognito": "split",

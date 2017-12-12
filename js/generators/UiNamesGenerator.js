@@ -5,14 +5,14 @@ function UiNamesGenerator() {
 UiNamesGenerator.prototype = new NameGenerator();
 UiNamesGenerator.prototype.url = function (params) {
     var baseUrl = 'https://uinames.com/api/';
-    var urlParams = 'ext';
+    var urlParams = '?ext';
     if (params.country) {
-        urlParams += 'region=' + this.getInfo().countries[params.country].param;
+        urlParams += '&region=' + this.getInfo().countries[params.country].param;
     }
     if (params.sex) {
-        urlParams += (urlParams.length > 0 ? '&' : '') + 'gender=' + this.getInfo().sexes[params.sex].param;
+        urlParams += '&gender=' + this.getInfo().sexes[params.sex].param;
     }
-    return baseUrl + (urlParams.length > 0 ? '?' : '') + urlParams;
+    return baseUrl + urlParams;
 };
 
 UiNamesGenerator.prototype.convert = function (json) {

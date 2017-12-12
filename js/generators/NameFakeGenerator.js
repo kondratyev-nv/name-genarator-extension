@@ -5,7 +5,7 @@ function NameFakeGenerator() {
 NameFakeGenerator.prototype = new NameGenerator();
 
 NameFakeGenerator.prototype.url = function (params) {
-    var baseUrl = 'http://api.namefake.com/';
+    var baseUrl = 'https://api.namefake.com/';
 
     if (params.country) {
         baseUrl += this.getInfo().countries[params.country].param + '/';
@@ -38,7 +38,7 @@ NameFakeGenerator.prototype.getCode = function () {
 NameFakeGenerator.prototype.getInfo = function () {
     return {
         text: 'Fake Name Generator',
-        url: 'http://namefake.com/',
+        url: 'https://namefake.com/',
         sexes: [
             {
                 name: 'Male',

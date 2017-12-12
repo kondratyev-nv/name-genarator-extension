@@ -1,9 +1,11 @@
 
 $(document).ready(function () {
     var nameGenerator = new NameGeneratorExtension(document, [
-        new NameFakeGenerator(),
         new RandomUserGenerator(),
-        new UiNamesGenerator()
+        new UiNamesGenerator(),
+        new RandomProfileGenerator()
+        // Removed because of HTTPS issue
+        // new NameFakeGenerator()
     ]);
 
     $('#refreshbtn').click(function () {
