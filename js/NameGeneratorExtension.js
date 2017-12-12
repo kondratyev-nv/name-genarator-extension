@@ -7,6 +7,7 @@ function NameGeneratorExtension(document, generators) {
     this.settings = new NameGeneratorExtensionSettingsForm(document);
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
+    this.buildGeneratorOptions(document, generators);
     this.generator = this.getGenerator();
     this.mask = $('#loading');
     this.errorMessage = $('#error-message');
@@ -38,6 +39,18 @@ NameGeneratorExtension.prototype.getGenerator = function () {
 NameGeneratorExtension.prototype.updateFormValues = function (json) {
     this.form.fill(json);
     this.updatePreviousState();
+};
+
+NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, generators) {
+    var generatorSelect = $('#generatortype');
+    Utils.clearSelect(generatorSelect);
+    var options = generators.map(function (e) {
+        return {
+            name: e.getInfo().text,
+            value: e.getCode()
+        };
+    });
+    Utils.createOptions(document, generatorSelect, options);
 };
 
 NameGeneratorExtension.prototype.refresh = function () {

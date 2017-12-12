@@ -2,7 +2,8 @@
 $(document).ready(function () {
     var nameGenerator = new NameGeneratorExtension(document, [
         new NameFakeGenerator(),
-        new RandomUserGenerator()
+        new RandomUserGenerator(),
+        new UiNamesGenerator()
     ]);
 
     $('#refreshbtn').click(function () {
