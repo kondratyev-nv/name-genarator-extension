@@ -21,6 +21,8 @@ function NameGeneratorExtension(document, generators) {
         if (object.previousState) {
             self.previousState = object.previousState;
             self.updateFormValues(self.previousState);
+        } else {
+            self.refresh();
         }
     });
 
