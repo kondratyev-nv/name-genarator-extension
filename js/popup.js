@@ -33,4 +33,8 @@ $(document).ready(function () {
             chrome.tabs.create({ url: $(this).attr('href') });
         }
     });
+    var clipboard = new Clipboard('.copy-button');
+    clipboard.on('error', function(e) {
+        $('#error-message').show();
+    });
 });

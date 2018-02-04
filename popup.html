@@ -12,6 +12,7 @@
     <script src="lib/fontawesome-5.0.6/all.js"></script>
     <script src="lib/popper.js-1.12.9/popper.min.js"></script>
     <script src="lib/bootstrap-4.0.0/bootstrap.min.js"></script>
+    <script src="lib/clipboard.js-1.7.1/clipboard.min.js"></script>
 
     <script src="js/Utils.js"></script>
     <script src="js/Mask.js"></script>
@@ -44,19 +45,47 @@
         </div>
         <fieldset class="form-group">
             <label for="firstname">First name:</label>
-            <input type="text" class="form-control" id="firstname">
+            <div class="input-group">
+                <input type="text" class="form-control" id="firstname">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary copy-button" data-clipboard-target="#firstname">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
         <fieldset class="form-group">
             <label for="lastname">Last name:</label>
-            <input type="text" class="form-control" id="lastname">
+            <div class="input-group">
+                <input type="text" class="form-control" id="lastname">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary copy-button" data-clipboard-target="#lastname">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
         <fieldset class="form-group">
             <label for="lastname">Email:</label>
-            <input type="text" class="form-control" id="email">
+            <div class="input-group">
+                <input type="text" class="form-control" id="email">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary copy-button" data-clipboard-target="#email">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
         <fieldset class="form-group">
             <label for="lastname">Password:</label>
-            <input type="text" class="form-control" id="password">
+            <div class="input-group">
+                <input type="text" class="form-control" id="password">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary copy-button" data-clipboard-target="#password">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
         <nav class="nav nav-tabs nav-fill" role="tablist">
             <a class="nav-item nav-link active" data-toggle="tab" action-in="popup" href="#generator" role="tab" aria-selected="true">Generator</a>
