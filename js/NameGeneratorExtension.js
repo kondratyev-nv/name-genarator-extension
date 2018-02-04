@@ -1,4 +1,3 @@
-
 function NameGeneratorExtension(document, generators) {
     var self = this;
     this.form = new NameGeneratorExtensionForm(document, function () {
@@ -57,18 +56,25 @@ NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, gen
 
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
-    self.mask.modal('show');
+    self.mask.modal({
+        backdrop: 'static',
+        keyboard: false
+    });
     self.errorMessage.hide();
     var params = self.settings.getGenerationParams();
     this.getGenerator().next({
         params: params,
         onCompleted: function (json) {
             self.updateFormValues(json);
-            self.mask.modal('hide');
+            self.mask.one('shown.bs.modal', function (e) {
+                self.mask.modal('hide');
+            });
         },
         onError: function (ex) {
             self.errorMessage.show();
-            self.mask.modal('hide');
+            self.mask.one('shown.bs.modal', function (e) {
+                self.mask.modal('hide');
+            });
         }
     });
 };
