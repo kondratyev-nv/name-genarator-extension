@@ -3,14 +3,14 @@ function NameGeneratorExtension(document, generators) {
     this.form = new NameGeneratorExtensionForm(document, function () {
         self.updatePreviousState();
     });
-    this.settings = new NameGeneratorExtensionSettingsForm(document, function() {
+    this.settings = new NameGeneratorExtensionSettingsForm(document, function () {
         self.refresh();
     });
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
     this.buildGeneratorOptions(document, generators);
     this.generator = this.getGenerator();
-    this.mask = $('#loading');
+    this.mask = Mask($('#loading'));
     this.errorMessage = $('#error-message');
     this.savedNames = {};
     this.previousState = {};
@@ -58,25 +58,18 @@ NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, gen
 
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
-    self.mask.modal({
-        backdrop: 'static',
-        keyboard: false
-    });
+    self.mask.show();
     self.errorMessage.hide();
     var params = self.settings.getGenerationParams();
     this.getGenerator().next({
         params: params,
         onCompleted: function (json) {
             self.updateFormValues(json);
-            self.mask.one('shown.bs.modal', function (e) {
-                self.mask.modal('hide');
-            });
+            self.mask.hide();
         },
         onError: function (ex) {
             self.errorMessage.show();
-            self.mask.one('shown.bs.modal', function (e) {
-                self.mask.modal('hide');
-            });
+            self.mask.hide();
         }
     });
 };
