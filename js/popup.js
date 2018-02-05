@@ -4,8 +4,6 @@ $(document).ready(function () {
         new RandomUserGenerator(),
         new UiNamesGenerator(),
         new RandomProfileGenerator()
-        // Removed because of HTTPS issue
-        // new NameFakeGenerator()
     ]);
 
     $('#refreshbtn').click(function () {
