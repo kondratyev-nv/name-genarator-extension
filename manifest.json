@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Name Generator",
     "description": "Easy way to generate random names and save them for a later use!",
-    "version": "0.0.0.3",
+    "version": "0.1.0",
     "browser_action": {
         "default_popup": "popup.html"
     },
@@ -14,7 +14,6 @@
     },
     "permissions": [
         "https://randomuser.me/api/*",
-        "https://api.namefake.com/*",
         "https://uinames.com/api/*",
         "http://randomprofile.com/api/*",
         "storage"
