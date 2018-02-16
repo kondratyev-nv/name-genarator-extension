@@ -43,7 +43,7 @@ NameGeneratorExtensionSettingsForm.prototype.fillSelectFromParams = function (se
     random.value = '';
     select.append(random);
 
-    var options = Object.keys(params).map(function (key) {
+    var options = Object.keys(params).map(key => {
         return {
             name: params[key].name,
             value: key

@@ -8,7 +8,7 @@ Utils.capitalizeFirstLetter = function (str) {
 };
 
 Utils.createOptions = function (document, select, options) {
-    options.forEach(function(option) {
+    options.forEach(option => {
         select.append(Utils.createOption(document, option.name, option.value));
     });
 };

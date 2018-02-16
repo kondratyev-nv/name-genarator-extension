@@ -7,7 +7,6 @@ import '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css';
 import "../styles/popup.css";
 
 import $ from "jquery";
-import 'bootstrap';
 import Clipboard from 'clipboard';
 var NameGeneratorExtension = require('./NameGeneratorExtension.js');
 var RandomUserGenerator = require('./generators/RandomUserGenerator.js');

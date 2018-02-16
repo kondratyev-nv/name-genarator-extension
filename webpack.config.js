@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -8,25 +9,26 @@ module.exports = {
     entry: './src/scripts/popup.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].js?[hash]"
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[hash].js'
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                ],
+                use: {
+                    loader: 'babel-loader'
+                },
             },
             {
                 test: /\.html$/,
-                use: [{
+                use: {
                     loader: 'html-loader',
                     options: {
                         minimize: true
                     }
-                }],
+                },
             },
             {
                 test: /\.css$/,
@@ -49,9 +51,9 @@ module.exports = {
             },
             {
                 test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                use: [{
+                use: {
                     loader: 'file-loader'
-                }]
+                }
             }
         ]
     },

@@ -6,7 +6,7 @@ function NameGeneratorExtensionProfilesForm(document) {
 
     var aliasField = this.getElement('alias');
     var self = this;
-    aliasField.on('change paste keyup', function () {
+    aliasField.on('change paste keyup', () => {
         self.getElement('savebtn').prop('disabled', !aliasField.val());
     });
 };
@@ -27,7 +27,7 @@ NameGeneratorExtensionProfilesForm.prototype.alias = function (value) {
 NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (savedNames) {
     var select = this.getElement('savednames');
     Utils.clearSelect(select);
-    var options = Object.keys(savedNames).map(function (key) {
+    var options = Object.keys(savedNames).map(key => {
         return {
             name: key,
             value: key

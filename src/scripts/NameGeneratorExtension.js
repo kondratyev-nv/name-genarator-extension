@@ -39,7 +39,7 @@ function NameGeneratorExtension(document, generators) {
 NameGeneratorExtension.prototype.getGenerator = function () {
     var generatorCode = this.settings.getGeneratorOption();
     if (!this.generator || generatorCode !== this.generator.getCode()) {
-        this.generator = this.generators.find(function (generator) {
+        this.generator = this.generators.find(generator => {
             return generatorCode === generator.getCode();
         });
     }
@@ -54,7 +54,7 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, generators) {
     var generatorSelect = $('#generatortype');
     Utils.clearSelect(generatorSelect);
-    var options = generators.map(function (e) {
+    var options = generators.map(e => {
         return {
             name: e.getInfo().text,
             value: e.getCode()
@@ -70,11 +70,11 @@ NameGeneratorExtension.prototype.refresh = function () {
     var params = self.settings.getGenerationParams();
     this.getGenerator().next({
         params: params,
-        onCompleted: function (json) {
+        onCompleted: json => {
             self.updateFormValues(json);
             self.mask.hide();
         },
-        onError: function (ex) {
+        onError: ex => {
             self.errorMessage.show();
             self.mask.hide();
         }
