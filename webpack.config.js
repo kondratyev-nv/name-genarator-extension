@@ -9,8 +9,7 @@ module.exports = {
     entry: './src/scripts/popup.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[hash].js'
+        filename: '[name].js?[hash]'
     },
     module: {
         rules: [
@@ -38,7 +37,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             minimize: true,
-                            sourceMap: true
+                            sourceMap: false
                         }
                     }
                 })
@@ -50,7 +49,7 @@ module.exports = {
                 }
             },
             {
-                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                test: /.(ttf|otf|eot|svg|woff|woff2)$/,
                 use: {
                     loader: 'file-loader'
                 }
@@ -64,7 +63,7 @@ module.exports = {
             'src/manifest.json'
         ]),
         new HtmlWebpackPlugin({
-            filename: 'popup.html',
+            filename: 'popup.html?[hash]',
             template: './src/popup.html'
         }),
         new ExtractTextPlugin({
