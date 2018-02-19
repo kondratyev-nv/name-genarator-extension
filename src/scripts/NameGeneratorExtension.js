@@ -17,8 +17,11 @@ function NameGeneratorExtension(document, generators) {
     this.generators = generators;
     this.buildGeneratorOptions(document, generators);
     this.generator = this.getGenerator();
-    this.mask = Mask($('#loading'));
-    this.errorMessage = $('#error-message');
+    this.mask = Mask($('#loading'), {
+        backdrop: 'static',
+        keyboard: false
+    });
+    this.errorMessage = Mask($('#error-message'));
     this.savedNames = {};
     this.previousState = {};
 
@@ -66,7 +69,6 @@ NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, gen
 NameGeneratorExtension.prototype.refresh = function () {
     var self = this;
     self.mask.show();
-    self.errorMessage.hide();
     var params = self.settings.getGenerationParams();
     this.getGenerator().next({
         params: params,

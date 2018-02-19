@@ -1,5 +1,6 @@
-function Mask(modal) {
+function Mask(modal, config) {
     var needHiding = false, shown = false;
+    config = config || {};
     modal.on('shown.bs.modal', function (e) {
         shown = true;
         if (needHiding) {
@@ -12,10 +13,7 @@ function Mask(modal) {
     });
     return {
         show: function () {
-            modal.modal({
-                backdrop: 'static',
-                keyboard: false
-            });
+            modal.modal(config);
         },
         hide: function () {
             needHiding = true;
