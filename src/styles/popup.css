@@ -9,8 +9,11 @@ body {
 
 @font-face {
   font-family: 'nge-font';
-  src: url('fonts/nge-font.eot?6h6bj4');
-  src: url('fonts/nge-font.eot?6h6bj4#iefix') format('embedded-opentype'), url('fonts/nge-font.ttf?6h6bj4') format('truetype'), url('fonts/nge-font.woff?6h6bj4') format('woff'), url('fonts/nge-font.svg?6h6bj4#nge-font') format('svg');
+  src:  url('fonts/nge-font.eot?qw61uy');
+  src:  url('fonts/nge-font.eot?qw61uy#iefix') format('embedded-opentype'),
+    url('fonts/nge-font.ttf?qw61uy') format('truetype'),
+    url('fonts/nge-font.woff?qw61uy') format('woff'),
+    url('fonts/nge-font.svg?qw61uy#nge-font') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,18 +33,21 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-copy:before {
-  content: "\e92c";
-}
-
-.icon-spinner:before {
-  content: "\e984";
-}
-
 .icon-download:before {
-  content: "\e9c7";
+  content: "\f019";
 }
-
+.icon-refresh:before {
+  content: "\f021";
+}
+.icon-warning:before {
+  content: "\f071";
+}
 .icon-upload:before {
-  content: "\e9c8";
+  content: "\f093";
+}
+.icon-info:before {
+  content: "\f129";
+}
+.icon-copy:before {
+  content: "\e900";
 }
