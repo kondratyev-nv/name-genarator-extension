@@ -6,12 +6,14 @@ import "../styles/popup.css";
 import $ from "jquery";
 import Clipboard from 'clipboard';
 var NameGeneratorExtension = require('./NameGeneratorExtension.js');
+var FakerGenerator = require('./generators/FakerGenerator');
 var RandomUserGenerator = require('./generators/RandomUserGenerator.js');
 var UiNamesGenerator = require('./generators/UiNamesGenerator.js');
 var RandomProfileGenerator = require('./generators/RandomProfileGenerator.js');
 
 $(document).ready(function () {
     var nameGenerator = new NameGeneratorExtension(document, [
+        new FakerGenerator(),
         new RandomUserGenerator(),
         new UiNamesGenerator(),
         new RandomProfileGenerator()

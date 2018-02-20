@@ -9,6 +9,7 @@ Easy way to generate fake names and save them for later use.
 
 ## Supported generators
 
+- [Faker.js](https://github.com/marak/Faker.js/)
 - [Random User Generator](https://randomuser.me/)
 - [Random Profile](http://randomprofile.com/)
 - [uinames.com](https://uinames.com/)

@@ -24,4 +24,8 @@ Utils.clearSelect = function (select) {
     select.empty();
 };
 
+Utils.getRandomInteger = function (min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 module.exports = Utils;
