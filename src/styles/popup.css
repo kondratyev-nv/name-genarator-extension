@@ -4,9 +4,8 @@ body {
 }
 
 .help-block {
-  font-size: 0.7rem;
+  font-size: .7rem;
 }
-
 @font-face {
   font-family: 'nge-font';
   src: url('fonts/nge-font.eot?qw61uy');
@@ -52,4 +51,21 @@ i {
 
 .icon-copy:before {
   content: "\e900";
+}
+
+.spin {
+  animation: spin 2s infinite linear;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
