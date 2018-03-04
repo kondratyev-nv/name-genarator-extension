@@ -25,6 +25,14 @@ Easy way to generate fake names and save them for later use.
 
 ## Release notes
 
+### 0.1.0
+
+ - Add auto-refresh on first run
+ - Add Faker.js generator
+ - Add copy buttons
+ - Fix permissions
+ - Update dependencies versions, design and icons
+
 ### 0.0.0.3
  
  - Add refresh on sex and country change
