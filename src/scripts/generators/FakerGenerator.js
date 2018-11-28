@@ -1,7 +1,8 @@
-var faker = require('faker');
-var Utils = require('../Utils');
+import * as faker from 'faker';
 
-module.exports = function () {
+import { getRandomInteger } from '../Utils';
+
+export function FakerGenerator() {
     const locales = Object.keys(faker.locales).map(locale => ({
         name: faker.locales[locale].title,
         param: locale
@@ -9,7 +10,7 @@ module.exports = function () {
     return {
         next: function (configuration) {
             try {
-                const localeIndex = configuration.params.country || Utils.getRandomInteger(0, locales.length);
+                const localeIndex = configuration.params.country || getRandomInteger(0, locales.length);
                 faker.locale = locales[localeIndex].param;
                 configuration.onCompleted({
                     firstName: faker.name.firstName(),
@@ -33,4 +34,4 @@ module.exports = function () {
             };
         }
     };
-};
+}

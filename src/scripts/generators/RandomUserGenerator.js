@@ -1,5 +1,5 @@
-var NameGenerator = require('../NameGenerator.js');
-var Utils = require('../Utils.js');
+import { NameGenerator } from '../NameGenerator';
+import { capitalizeFirstLetter } from '../Utils';
 
 function RandomUserGenerator() {
 }
@@ -19,8 +19,8 @@ RandomUserGenerator.prototype.url = function (params) {
 
 RandomUserGenerator.prototype.convert = function (json) {
     return {
-        firstName: Utils.capitalizeFirstLetter(json.results[0].name.first),
-        lastName: Utils.capitalizeFirstLetter(json.results[0].name.last),
+        firstName: capitalizeFirstLetter(json.results[0].name.first),
+        lastName: capitalizeFirstLetter(json.results[0].name.last),
         email: json.results[0].email,
         password: json.results[0].login.password
     };
@@ -113,4 +113,4 @@ RandomUserGenerator.prototype.getInfo = function () {
     };
 };
 
-module.exports = RandomUserGenerator;
+export { RandomUserGenerator };

@@ -1,5 +1,6 @@
-var Utils = require('./Utils.js');
-import $ from "jquery";
+import $ from 'jquery';
+
+import { capitalizeFirstLetter } from './Utils';
 
 function NameGeneratorExtensionForm(document, updateStateCallback) {
     this.document = document;
@@ -10,12 +11,12 @@ function NameGeneratorExtensionForm(document, updateStateCallback) {
         password: 'password'
     };
     this.init(updateStateCallback);
-};
+}
 
 NameGeneratorExtensionForm.prototype.init = function (updateStateCallback) {
     for (var valueKey in this.valuesMap) {
-        this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field'] = this.createGetFieldFunction(valueKey);
-        this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().on('change paste keyup', updateStateCallback);
+        this['get' + capitalizeFirstLetter(valueKey) + 'Field'] = this.createGetFieldFunction(valueKey);
+        this['get' + capitalizeFirstLetter(valueKey) + 'Field']().on('change paste keyup', updateStateCallback);
         this[valueKey] = this.createGetSetFunction(valueKey);
     }
 };
@@ -32,7 +33,7 @@ NameGeneratorExtensionForm.prototype.createGetFieldFunction = function (valueKey
 
 NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) {
     return function (value) {
-        return this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val(value);
+        return this['get' + capitalizeFirstLetter(valueKey) + 'Field']().val(value);
     };
 };
 
@@ -45,7 +46,7 @@ NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
 NameGeneratorExtensionForm.prototype.getState = function () {
     var state = {};
     for (var valueKey in this.valuesMap) {
-        state[valueKey] = this['get' + Utils.capitalizeFirstLetter(valueKey) + 'Field']().val();
+        state[valueKey] = this['get' + capitalizeFirstLetter(valueKey) + 'Field']().val();
     }
     return state;
 };
@@ -54,4 +55,4 @@ NameGeneratorExtensionForm.prototype.getElement = function (id) {
     return $('#' + id);
 };
 
-module.exports = NameGeneratorExtensionForm;
+export { NameGeneratorExtensionForm };

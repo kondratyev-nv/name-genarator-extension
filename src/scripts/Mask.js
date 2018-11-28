@@ -1,14 +1,13 @@
-function Mask(modal, config) {
-    var needHiding = false, shown = false;
+
+export function Mask(modal, config) {
+    var needHiding = false;
     config = config || {};
-    modal.on('shown.bs.modal', function (e) {
-        shown = true;
+    modal.on('shown.bs.modal', function () {
         if (needHiding) {
             modal.modal('hide');
         }
     });
-    modal.on('hidden.bs.modal', function (e) {
-        shown = false;
+    modal.on('hidden.bs.modal', function () {
         needHiding = false;
     });
     return {
@@ -21,5 +20,3 @@ function Mask(modal, config) {
         }
     };
 }
-
-module.exports = Mask;

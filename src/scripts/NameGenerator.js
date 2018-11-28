@@ -1,7 +1,7 @@
 
 function NameGenerator() {
     this.xhr = new XMLHttpRequest();
-};
+}
 
 NameGenerator.prototype.next = function (requestConfiguration) {
     var self = this;
@@ -15,7 +15,7 @@ NameGenerator.prototype.next = function (requestConfiguration) {
                 requestConfiguration.onError(ex);
             }
         }
-    }
+    };
     self.xhr.send();
 };
 
@@ -23,7 +23,7 @@ NameGenerator.prototype.httpMethod = function () {
     return 'GET';
 };
 
-NameGenerator.prototype.url = function (params) {
+NameGenerator.prototype.url = function () {
     return '';
 };
 
@@ -39,4 +39,4 @@ NameGenerator.prototype.getInfo = function () {
     return undefined;
 };
 
-module.exports = NameGenerator;
+export { NameGenerator };
