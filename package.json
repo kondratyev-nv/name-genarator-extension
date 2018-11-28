@@ -2,7 +2,7 @@
   "name": "name-genarator-extension",
   "version": "0.1.0",
   "description": "Easy way to generate random names and save them for a later use!",
-  "main": "popup.js",
+  "main": "src/scripts/popup.js",
   "scripts": {
     "lint": "eslint ./src",
     "build": "webpack --mode production",

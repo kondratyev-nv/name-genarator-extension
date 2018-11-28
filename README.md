@@ -1,4 +1,4 @@
-# Fake name generation extension for Google Chrome
+# ![Logo](images/logo.png) Fake name generation extension for Google Chrome
 
 [Name Generator is available in the Chrome Web Store](https://chrome.google.com/webstore/detail/name-generator/ldkklmldmddiahpjfablcmabdfhodpbi)
 
@@ -14,6 +14,10 @@ Easy way to generate fake names and save them for later use.
 - [Random Profile](http://randomprofile.com/)
 - [uinames.com](https://uinames.com/)
 
+## Screenshots
+
+![Extension screenshots](images/screenshots.png)
+
 ## Installation
 
  1. Build extension
@@ -24,6 +28,14 @@ Easy way to generate fake names and save them for later use.
  1. In your browser load unpacked extension from `dist` folder
 
 ## Release notes
+
+### 0.1.0
+
+ - Add auto-refresh on first run
+ - Add Faker.js generator
+ - Add copy buttons
+ - Fix permissions
+ - Update dependencies versions, design and icons
 
 ### 0.0.0.3
  
