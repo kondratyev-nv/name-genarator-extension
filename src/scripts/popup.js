@@ -1,15 +1,16 @@
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../styles/popup.css";
+import '../styles/popup.css';
 
-import $ from "jquery";
+import $ from 'jquery';
 import Clipboard from 'clipboard';
-var NameGeneratorExtension = require('./NameGeneratorExtension.js');
-var FakerGenerator = require('./generators/FakerGenerator');
-var RandomUserGenerator = require('./generators/RandomUserGenerator.js');
-var UiNamesGenerator = require('./generators/UiNamesGenerator.js');
-var RandomProfileGenerator = require('./generators/RandomProfileGenerator.js');
+
+import { NameGeneratorExtension } from './NameGeneratorExtension';
+import { FakerGenerator } from './generators/FakerGenerator';
+import { RandomUserGenerator } from './generators/RandomUserGenerator';
+import { UiNamesGenerator } from './generators/UiNamesGenerator';
+import { RandomProfileGenerator } from './generators/RandomProfileGenerator';
 
 $(document).ready(function () {
     var nameGenerator = new NameGeneratorExtension(document, [
@@ -45,7 +46,7 @@ $(document).ready(function () {
         }
     });
     new Clipboard('.copy-button')
-        .on('error', function (e) {
+        .on('error', function () {
             $('#error-message').show();
         });
 });

@@ -1,31 +1,25 @@
 
-function Utils() {
-
+export function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-Utils.capitalizeFirstLetter = function (str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-Utils.createOptions = function (document, select, options) {
+export function createOptions(document, select, options) {
     options.forEach(option => {
-        select.append(Utils.createOption(document, option.name, option.value));
+        select.append(createOption(document, option.name, option.value));
     });
-};
+}
 
-Utils.createOption = function (document, text, value) {
+export function createOption(document, text, value) {
     var option = document.createElement('option');
     option.text = text;
-    option.value = value;
+    option.value = value || '';
     return option;
-};
-
-Utils.clearSelect = function (select) {
-    select.empty();
-};
-
-Utils.getRandomInteger = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-module.exports = Utils;
+export function clearSelect(select) {
+    select.empty();
+}
+
+export function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}

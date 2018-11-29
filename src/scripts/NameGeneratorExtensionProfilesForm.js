@@ -1,5 +1,6 @@
-var Utils = require('./Utils.js');
-import $ from "jquery";
+import $ from 'jquery';
+
+import { clearSelect, createOptions } from './Utils';
 
 function NameGeneratorExtensionProfilesForm(document) {
     this.document = document;
@@ -9,7 +10,7 @@ function NameGeneratorExtensionProfilesForm(document) {
     aliasField.on('change paste keyup', () => {
         self.getElement('savebtn').prop('disabled', !aliasField.val());
     });
-};
+}
 
 NameGeneratorExtensionProfilesForm.prototype.getLoadOption = function () {
     return this.getElement('savednames').val();
@@ -26,7 +27,7 @@ NameGeneratorExtensionProfilesForm.prototype.alias = function (value) {
 
 NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (savedNames) {
     var select = this.getElement('savednames');
-    Utils.clearSelect(select);
+    clearSelect(select);
     var options = Object.keys(savedNames).map(key => {
         return {
             name: key,
@@ -34,7 +35,7 @@ NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (
         };
     });
     this.setDisabledSavedNamesSelector(options.length < 1);
-    Utils.createOptions(this.document, select, options);
+    createOptions(this.document, select, options);
 };
 
 NameGeneratorExtensionProfilesForm.prototype.setDisabledSavedNamesSelector = function (disabled) {
@@ -50,4 +51,4 @@ NameGeneratorExtensionProfilesForm.prototype.getElement = function (id) {
     return $('#' + id);
 };
 
-module.exports = NameGeneratorExtensionProfilesForm;
+export { NameGeneratorExtensionProfilesForm };

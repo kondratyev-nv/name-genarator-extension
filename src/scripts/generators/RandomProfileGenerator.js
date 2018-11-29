@@ -1,4 +1,4 @@
-var NameGenerator = require('../NameGenerator.js');
+import { NameGenerator } from '../NameGenerator';
 
 function RandomProfileGenerator() {
 }
@@ -60,4 +60,4 @@ RandomProfileGenerator.prototype.getInfo = function () {
     };
 };
 
-module.exports = RandomProfileGenerator;
+export { RandomProfileGenerator };

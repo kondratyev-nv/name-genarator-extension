@@ -1,9 +1,12 @@
-var NameGeneratorExtensionForm = require('./NameGeneratorExtensionForm.js');
-var NameGeneratorExtensionSettingsForm = require('./NameGeneratorExtensionSettingsForm.js');
-var NameGeneratorExtensionProfilesForm = require('./NameGeneratorExtensionProfilesForm.js');
-import $ from "jquery";
-var Mask = require('./Mask.js');
-var Utils = require('./Utils.js');
+import $ from 'jquery';
+
+import { Mask } from './Mask';
+import { clearSelect, createOptions } from './Utils';
+
+import { NameGeneratorExtensionForm } from './NameGeneratorExtensionForm';
+import { NameGeneratorExtensionSettingsForm } from './NameGeneratorExtensionSettingsForm';
+import { NameGeneratorExtensionProfilesForm } from './NameGeneratorExtensionProfilesForm';
+
 
 function NameGeneratorExtension(document, generators) {
     var self = this;
@@ -37,7 +40,7 @@ function NameGeneratorExtension(document, generators) {
     });
 
     self.changeGenerator(false);
-};
+}
 
 NameGeneratorExtension.prototype.getGenerator = function () {
     var generatorCode = this.settings.getGeneratorOption();
@@ -56,14 +59,14 @@ NameGeneratorExtension.prototype.updateFormValues = function (json) {
 
 NameGeneratorExtension.prototype.buildGeneratorOptions = function (document, generators) {
     var generatorSelect = $('#generatortype');
-    Utils.clearSelect(generatorSelect);
+    clearSelect(generatorSelect);
     var options = generators.map(e => {
         return {
             name: e.getInfo().text,
             value: e.getCode()
         };
     });
-    Utils.createOptions(document, generatorSelect, options);
+    createOptions(document, generatorSelect, options);
 };
 
 NameGeneratorExtension.prototype.refresh = function () {
@@ -76,7 +79,7 @@ NameGeneratorExtension.prototype.refresh = function () {
             self.updateFormValues(json);
             self.mask.hide();
         },
-        onError: ex => {
+        onError: () => {
             self.errorMessage.show();
             self.mask.hide();
         }
@@ -120,4 +123,4 @@ NameGeneratorExtension.prototype.load = function () {
     this.updateFormValues(this.savedNames[alias]);
 };
 
-module.exports = NameGeneratorExtension;
+export { NameGeneratorExtension };

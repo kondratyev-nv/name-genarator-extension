@@ -1,4 +1,4 @@
-var NameGenerator = require('../NameGenerator.js');
+import { NameGenerator } from '../NameGenerator';
 
 function UiNamesGenerator() {
 }
@@ -260,4 +260,4 @@ UiNamesGenerator.prototype.getInfo = function () {
     };
 };
 
-module.exports = UiNamesGenerator;
+export { UiNamesGenerator };
