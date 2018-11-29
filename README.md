@@ -1,7 +1,8 @@
 # ![Logo](images/logo.png) Fake name generation extension for Google Chrome
 
-[Name Generator is available in the Chrome Web Store](https://chrome.google.com/webstore/detail/name-generator/ldkklmldmddiahpjfablcmabdfhodpbi)
+[Name Generator is available in the Chrome Web Store!](https://chrome.google.com/webstore/detail/name-generator/ldkklmldmddiahpjfablcmabdfhodpbi)
 
+[![Build Status](https://travis-ci.com/kondratyev-nv/name-genarator-extension.svg?branch=master)](https://travis-ci.com/kondratyev-nv/name-genarator-extension)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/ldkklmldmddiahpjfablcmabdfhodpbi.svg)](https://chrome.google.com/webstore/detail/name-generator/ldkklmldmddiahpjfablcmabdfhodpbi)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
