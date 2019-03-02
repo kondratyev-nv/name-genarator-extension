@@ -15,6 +15,7 @@ function NameGeneratorExtension(document, generators) {
     });
     this.settings = new NameGeneratorExtensionSettingsForm(document, function () {
         self.refresh();
+        self.updatePreviousState();
     });
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
@@ -37,17 +38,42 @@ function NameGeneratorExtension(document, generators) {
         } else {
             self.refresh();
         }
-    });
 
-    self.changeGenerator(false);
+        if (object.previousGeneratorSettings) {
+            var previousGeneratorSettings = object.previousGeneratorSettings;
+            if (previousGeneratorSettings) {
+                var previousGenerator = self.findGenerator(previousGeneratorSettings.generator);
+                if (previousGenerator) {
+                    var generatorSelect = $('#generatortype');
+                    generatorSelect.val(previousGeneratorSettings.generator);
+                }
+            }
+        }
+
+        self.changeGenerator(false);
+
+        if (object.previousGeneratorSettings) {
+            var previousGeneratorSettings = object.previousGeneratorSettings;
+            if (previousGeneratorSettings) {
+                var previousGenerator = self.findGenerator(previousGeneratorSettings.generator);
+                if (previousGenerator) {
+                    self.settings.setGenerationParams(previousGeneratorSettings.params);
+                }
+            }
+        }
+    });
+}
+
+NameGeneratorExtension.prototype.findGenerator = function (code) {
+    return this.generators.find(generator => {
+        return code === generator.getCode();
+    });
 }
 
 NameGeneratorExtension.prototype.getGenerator = function () {
     var generatorCode = this.settings.getGeneratorOption();
     if (!this.generator || generatorCode !== this.generator.getCode()) {
-        this.generator = this.generators.find(generator => {
-            return generatorCode === generator.getCode();
-        });
+        this.generator = this.findGenerator(generatorCode);
     }
     return this.generator;
 };
@@ -94,6 +120,7 @@ NameGeneratorExtension.prototype.changeGenerator = function (needRefresh) {
     if (needRefresh) {
         this.refresh();
     }
+    // this.updatePreviousState();
 };
 
 NameGeneratorExtension.prototype.save = function () {
@@ -110,7 +137,11 @@ NameGeneratorExtension.prototype.updatePreviousState = function () {
     var self = this;
     chrome.storage.local.set({
         'savedNames': this.savedNames,
-        'previousState': self.form.getState()
+        'previousState': self.form.getState(),
+        'previousGeneratorSettings': {
+            'generator': self.settings.getGeneratorOption(),
+            'params': self.settings.getGenerationParams()
+        }
     });
 };
 
