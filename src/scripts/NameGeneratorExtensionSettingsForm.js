@@ -26,6 +26,11 @@ NameGeneratorExtensionSettingsForm.prototype.getGenerationParams = function () {
     };
 };
 
+NameGeneratorExtensionSettingsForm.prototype.setGenerationParams = function (params) {
+    this.sexOption.val(params.sex);
+    this.countryOption.val(params.country);
+};
+
 NameGeneratorExtensionSettingsForm.prototype.fillGeneratorParams = function (info) {
     this.fillSelectFromParams(this.sexOption, info.sexes);
     this.fillSelectFromParams(this.countryOption, info.countries);

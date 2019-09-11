@@ -15,6 +15,7 @@ function NameGeneratorExtension(document, generators) {
     });
     this.settings = new NameGeneratorExtensionSettingsForm(document, function () {
         self.refresh();
+        self.updatePreviousState();
     });
     this.profiles = new NameGeneratorExtensionProfilesForm(document);
     this.generators = generators;
@@ -26,34 +27,49 @@ function NameGeneratorExtension(document, generators) {
     });
     this.errorMessage = Mask($('#error-message'));
     this.savedNames = {};
-    this.previousState = {};
 
     chrome.storage.local.get(null, function (object) {
         self.savedNames = object.savedNames || {};
         self.profiles.fillSavedNamesSelector(self.savedNames);
         if (object.previousState) {
-            self.previousState = object.previousState;
-            self.updateFormValues(self.previousState);
+            self.updateFormValues(object.previousState);
         } else {
             self.refresh();
         }
-    });
 
-    self.changeGenerator(false);
+        var previousSettings = object.previousGeneratorSettings;
+        if (previousSettings && previousSettings.generator) {
+            var previousGenerator = self.findGenerator(previousSettings.generator);
+            if (previousGenerator) {
+                var generatorSelect = $('#generatortype');
+                generatorSelect.val(previousSettings.generator);
+
+                self.changeGenerator(false);
+
+                if (previousSettings.settings) {
+                    self.settings.setGenerationParams(previousSettings.settings);
+                }
+            }
+        }
+    });
 }
+
+NameGeneratorExtension.prototype.findGenerator = function (code) {
+    return this.generators.find(generator => {
+        return code === generator.getCode();
+    });
+};
 
 NameGeneratorExtension.prototype.getGenerator = function () {
     var generatorCode = this.settings.getGeneratorOption();
     if (!this.generator || generatorCode !== this.generator.getCode()) {
-        this.generator = this.generators.find(generator => {
-            return generatorCode === generator.getCode();
-        });
+        this.generator = this.findGenerator(generatorCode);
     }
     return this.generator;
 };
 
-NameGeneratorExtension.prototype.updateFormValues = function (json) {
-    this.form.fill(json);
+NameGeneratorExtension.prototype.updateFormValues = function (previousState) {
+    this.form.fill(previousState);
     this.updatePreviousState();
 };
 
@@ -94,6 +110,7 @@ NameGeneratorExtension.prototype.changeGenerator = function (needRefresh) {
     if (needRefresh) {
         this.refresh();
     }
+    this.updatePreviousState();
 };
 
 NameGeneratorExtension.prototype.save = function () {
@@ -109,8 +126,12 @@ NameGeneratorExtension.prototype.save = function () {
 NameGeneratorExtension.prototype.updatePreviousState = function () {
     var self = this;
     chrome.storage.local.set({
-        'savedNames': this.savedNames,
-        'previousState': self.form.getState()
+        'savedNames': self.savedNames,
+        'previousState': self.form.getState(),
+        'previousGeneratorSettings': {
+            'generator': self.settings.getGeneratorOption(),
+            'settings': self.settings.getGenerationParams()
+        }
     });
 };
 
