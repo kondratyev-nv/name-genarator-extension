@@ -58,7 +58,7 @@ NameGeneratorExtension.prototype.findGenerator = function (code) {
     return this.generators.find(generator => {
         return code === generator.getCode();
     });
-}
+};
 
 NameGeneratorExtension.prototype.getGenerator = function () {
     var generatorCode = this.settings.getGeneratorOption();
