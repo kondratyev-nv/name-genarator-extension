@@ -52,10 +52,15 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin([
-            'src/images',
-            'src/manifest.json'
-        ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                'src/manifest.json',
+                {
+                    from: 'src/images',
+                    to: '',
+                }
+            ]
+        }),
         new HtmlWebpackPlugin({
             filename: 'popup.html?[hash]',
             template: './src/popup.html'
