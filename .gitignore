@@ -62,3 +62,6 @@ dist/
 
 # Temporary directory
 .tmp/
+
+# MacOS System
+.DS_Store

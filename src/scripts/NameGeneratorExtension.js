@@ -34,6 +34,7 @@ function NameGeneratorExtension(document, generators) {
         if (object.previousState) {
             self.updateFormValues(object.previousState);
         } else {
+            self.changeGenerator(false);
             self.refresh();
         }
 
@@ -95,7 +96,8 @@ NameGeneratorExtension.prototype.refresh = function () {
             self.updateFormValues(json);
             self.mask.hide();
         },
-        onError: () => {
+        onError: (e) => {
+            console.error(e);
             self.errorMessage.show();
             self.mask.hide();
         }
