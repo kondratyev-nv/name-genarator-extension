@@ -1,12 +1,13 @@
 {
   "name": "name-genarator-extension",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Easy way to generate random names and save them for a later use!",
   "main": "src/scripts/popup.js",
   "scripts": {
     "lint": "eslint ./src",
     "build": "webpack --mode production",
-    "watch-build": "webpack --watch --mode development"
+    "watch-build": "webpack --watch --mode development",
+    "debug": "webpack --mode=none"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,7 @@
     "eslint": "^7.2.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
-    "html-webpack-plugin": "^4.3.0",
+    "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^0.9.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
@@ -37,6 +38,7 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "clipboard": "^2.0.6",
+    "extension-build-webpack-plugin": "^1.1.7",
     "faker": "^4.1.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"

@@ -1,12 +1,11 @@
 import $ from 'jquery';
 
 import { Mask } from './Mask';
-import { clearSelect, createOptions } from './Utils';
+import { clearSelect, createOptions, getFirstObjectFromArray } from './Utils';
 
 import { NameGeneratorExtensionForm } from './NameGeneratorExtensionForm';
 import { NameGeneratorExtensionSettingsForm } from './NameGeneratorExtensionSettingsForm';
 import { NameGeneratorExtensionProfilesForm } from './NameGeneratorExtensionProfilesForm';
-
 
 function NameGeneratorExtension(document, generators) {
     var self = this;
@@ -138,12 +137,28 @@ NameGeneratorExtension.prototype.updatePreviousState = function () {
 };
 
 NameGeneratorExtension.prototype.load = function () {
-    var alias = this.profiles.getLoadOption();
-    if (!alias) {
+    var options = this.profiles.getLoadOption();
+    if (!options) {
         return;
     }
-    this.profiles.alias(alias);
-    this.updateFormValues(this.savedNames[alias]);
+    this.profiles.alias(options);
+    this.updateFormValues(this.savedNames[options]);
+};
+
+NameGeneratorExtension.prototype.remove = function () {
+    var self = this;
+
+    var optionForRemove = self.profiles.getLoadOption();
+    if (!optionForRemove) {
+        return;
+    }
+
+    delete self.savedNames[optionForRemove];
+
+    const nextSelection = getFirstObjectFromArray(self.savedNames);
+    self.updateFormValues(nextSelection.value);
+    self.profiles.fillSavedNamesSelector(self.savedNames);
+    self.profiles.changeSavedNamesOption(nextSelection.key);
 };
 
 export { NameGeneratorExtension };

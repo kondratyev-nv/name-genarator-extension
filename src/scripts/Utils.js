@@ -23,3 +23,12 @@ export function clearSelect(select) {
 export function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function getFirstObjectFromArray(array) {
+    for (var key in array)
+        if (array.hasOwnProperty(key)) {
+            return { key: key, value: array[key]};
+        };
+
+    return {};
+}
