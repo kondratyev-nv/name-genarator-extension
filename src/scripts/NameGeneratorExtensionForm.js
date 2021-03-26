@@ -38,6 +38,10 @@ NameGeneratorExtensionForm.prototype.createGetSetFunction = function (valueKey) 
 };
 
 NameGeneratorExtensionForm.prototype.fill = function (fakeNameInfo) {
+    if(fakeNameInfo == undefined){
+        return;
+    }
+
     for (var valueKey in this.valuesMap) {
         this[valueKey](fakeNameInfo[valueKey]);
     }

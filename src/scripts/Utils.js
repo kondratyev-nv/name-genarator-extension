@@ -23,3 +23,10 @@ export function clearSelect(select) {
 export function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function getFirstKeyValueFromObject(obj) {
+    const entries = Object.entries(obj || {});
+    const [key, value] = entries[0] || [];
+
+    return { key, value };
+}

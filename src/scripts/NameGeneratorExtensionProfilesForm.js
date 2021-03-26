@@ -40,6 +40,7 @@ NameGeneratorExtensionProfilesForm.prototype.fillSavedNamesSelector = function (
 
 NameGeneratorExtensionProfilesForm.prototype.setDisabledSavedNamesSelector = function (disabled) {
     this.getElement('savednames').prop('disabled', disabled);
+    this.getElement('removebtn').prop('disabled', disabled);
     this.getElement('loadbtn').prop('disabled', disabled);
 };
 

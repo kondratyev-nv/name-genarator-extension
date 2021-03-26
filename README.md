@@ -30,6 +30,10 @@ Easy way to generate fake names and save them for later use.
 
 ## Release notes
 
+### 0.2.0
+
+- Add button for removing saved data
+
 ### 0.1.4
 
  - Fix vulnerabilities by updating dependencies

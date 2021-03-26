@@ -17,7 +17,7 @@ body {
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'nge-font' !important;
-  speak: none;
+  speak-as: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -51,6 +51,10 @@ i {
 
 .icon-copy:before {
   content: "\e900";
+}
+
+.icon-bin:before {
+  content: "\e9ac";
 }
 
 .spin {

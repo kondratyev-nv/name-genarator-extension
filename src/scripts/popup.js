@@ -12,7 +12,7 @@ import { RandomUserGenerator } from './generators/RandomUserGenerator';
 import { UiNamesGenerator } from './generators/UiNamesGenerator';
 import { RandomProfileGenerator } from './generators/RandomProfileGenerator';
 
-$(document).ready(function () {
+$(function () {
     var nameGenerator = new NameGeneratorExtension(document, [
         new FakerGenerator(),
         new RandomUserGenerator(),
@@ -20,31 +20,36 @@ $(document).ready(function () {
         new RandomProfileGenerator()
     ]);
 
-    $('#refreshbtn').click(function () {
+    $('#refreshbtn').on("click", function () {
         nameGenerator.refresh();
     });
 
-    $('#savebtn').click(function () {
+    $('#savebtn').on("click", function () {
         nameGenerator.save();
     });
 
-    $('#loadbtn').click(function () {
+    $('#loadbtn').on("click", function () {
         nameGenerator.load();
     });
 
-    $('#generatortype').change(function () {
+    $('#removebtn').on("click", function () {
+        nameGenerator.remove();
+    });
+
+    $('#generatortype').on("change", function () {
         nameGenerator.changeGenerator(true);
     });
 
-    $('#error-message .close').click(function () {
+    $('#error-message .close').on("click", function () {
         $('#error-message').hide();
     });
 
-    $('body').on('click', 'a', function () {
+    $('body').on("click", 'a', function () {
         if ($(this).attr('action-in') != 'popup') {
             chrome.tabs.create({ url: $(this).attr('href') });
         }
     });
+
     new Clipboard('.copy-button')
         .on('error', function () {
             $('#error-message').show();
