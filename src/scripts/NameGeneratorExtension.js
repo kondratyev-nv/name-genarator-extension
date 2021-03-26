@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { Mask } from './Mask';
-import { clearSelect, createOptions, getFirstObjectFromArray } from './Utils';
+import { clearSelect, createOptions, getFirstKeyValueFromObject } from './Utils';
 
 import { NameGeneratorExtensionForm } from './NameGeneratorExtensionForm';
 import { NameGeneratorExtensionSettingsForm } from './NameGeneratorExtensionSettingsForm';
@@ -155,7 +155,7 @@ NameGeneratorExtension.prototype.remove = function () {
 
     delete self.savedNames[optionForRemove];
 
-    const nextSelection = getFirstObjectFromArray(self.savedNames);
+    const nextSelection = getFirstKeyValueFromObject(self.savedNames);
     self.updateFormValues(nextSelection.value);
     self.profiles.fillSavedNamesSelector(self.savedNames);
     self.profiles.changeSavedNamesOption(nextSelection.key);
