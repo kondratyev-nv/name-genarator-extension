@@ -1,9 +1,9 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Name Generator",
     "description": "Easy way to generate random names and save them for a later use!",
-    "version": "0.2.0",
-    "browser_action": {
+    "version": "0.3.0",
+    "action": {
         "default_popup": "popup.html"
     },
     "icons": {
@@ -13,11 +13,12 @@
         "128": "icon128.png"
     },
     "permissions": [
-        "https://randomuser.me/api/*",
-        "https://uinames.com/api/*",
-        "http://randomprofile.com/api/*",
         "storage"
     ],
-    "incognito": "split",
+    "host_permissions": [
+        "https://randomuser.me/api/*",
+        "https://uinames.com/api/*",
+        "http://randomprofile.com/api/*"
+    ],
     "short_name": "Name Generator"
 }
